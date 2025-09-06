@@ -406,13 +406,6 @@ function genTopThumnail() {
 	
 			// ここに投稿の表示処理（例：タイトル、抜粋など）を記述
 			// ※ この部分を省略してIDの取得だけに特化することも可能です
-			?>
-			<div class="exhibitor-post">
-				<h2><?php the_title(); ?></h2>
-				<p><?php the_excerpt(); ?></p>
-				<a href="<?php the_permalink(); ?>">詳細を見る</a>
-			</div>
-			<?php
 		}
 		// メインクエリをリセット
 		wp_reset_postdata();
@@ -420,7 +413,6 @@ function genTopThumnail() {
 		// 投稿が見つからなかった場合の処理
 		echo '該当する投稿は見つかりませんでした。';
 	}
-	var_dump($arPostID);
 
 	// 画像情報を取得
 
@@ -438,7 +430,32 @@ function genTopThumnail() {
 
 		for($j = 0; $j < $blockNumber; $j++){
 			$outputCode .= '<div class="block">';
-			$outputCode .=  getRandomNumber(7);
+			$randumIndex = getRandomNumber(count($arPostID));
+			
+			$post_id = $arPostID[$randumIndex]; // 例: 投稿IDが123の場合
+
+			// テキストフィールドの値を取得
+			$exhibitor_name = get_field('exhibitorName', $post_id);
+			$brand_name = get_field('brandName', $post_id);
+			$profile = get_field('profile', $post_id);
+
+			// 取得した値を使って何かを出力
+
+
+			// 繰り返しフィールドの値を取得
+			if ( have_rows('imageList', $post_id) ) {
+				while ( have_rows('imageList', $post_id) ) {
+					the_row();
+					// サブフィールドの画像フィールドの値を取得
+					$image = get_sub_field('image');
+					$outputCode .= '<div class="image">';
+					$outputCode .= '<img src="'.$image.'" data-postID="'.$post_id.'">';
+					$outputCode .= '</div>';
+break;
+				}
+			}
+			
+			
 			$outputCode .= '</div>';
 		}
 
