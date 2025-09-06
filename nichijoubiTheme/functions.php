@@ -382,21 +382,30 @@ function genTopThumnail() {
 
 	$width = $_POST['width'];
 	$height = $_POST['height'];
-
+	
 	// 投稿データの取得
 	$args = array(
-		'post_type' => 'post', // 投稿タイプを指定 (カスタム投稿タイプの場合は、そのスラッグを指定)
-		'category_name' => 'exhibitor', // カテゴリのスラッグ（名前ではないので注意）
-		'posts_per_page' => -1, // 全ての投稿を取得する場合は -1 を指定
+		'post_type'      => 'post', // 投稿タイプを指定
+		'category_name'  => 'exhibitor', // カテゴリのスラッグ
+		'posts_per_page' => -1, // 全ての投稿を取得
 	);
 	
 	// 新しいWP_Queryインスタンスを作成
 	$exhibitor_posts = new WP_Query($args);
 	
+	// 投稿IDを格納するための空の配列を初期化
+	$arPostID = array();
+	
 	// ループ開始
 	if ($exhibitor_posts->have_posts()) {
 		while ($exhibitor_posts->have_posts()) {
 			$exhibitor_posts->the_post();
+	
+			// 現在の投稿IDを配列に順次追加
+			$arPostID[] = get_the_ID();
+	
+			// ここに投稿の表示処理（例：タイトル、抜粋など）を記述
+			// ※ この部分を省略してIDの取得だけに特化することも可能です
 			?>
 			<div class="exhibitor-post">
 				<h2><?php the_title(); ?></h2>
@@ -411,6 +420,7 @@ function genTopThumnail() {
 		// 投稿が見つからなかった場合の処理
 		echo '該当する投稿は見つかりませんでした。';
 	}
+	var_dump($arPostID);
 
 	// 画像情報を取得
 
