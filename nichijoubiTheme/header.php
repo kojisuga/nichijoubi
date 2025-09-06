@@ -53,7 +53,7 @@ $(function(){
 
 	if(strstr($home,$current)){
 	// TOPページ用
-	
+		
 
 	}
 	else{
@@ -63,3 +63,16 @@ $(function(){
 	}
 
 ?>
+<div class="menu">
+	<div class="background">
+		<div class="logo"></div>
+		<div class="menuListWrapper">
+			<a class="aLink" href="<?php echo get_home_url() ?>/"><div class="list">top</div></a>
+			<a class="aLink" href="<?php echo get_home_url() ?>/"><div class="list">about</div></a>
+			<a class="aLink" href="<?php echo get_home_url() ?>/"><div class="list">exhibitor</div></a>
+			<a class="aLink" href="<?php echo get_home_url() ?>/"><div class="list">contact</div></a>
+		</div><!-- background -->
+	</div><!-- background -->
+	<div class="mobDisp menuButton"></div>
+
+</div><!-- basicMenu -->

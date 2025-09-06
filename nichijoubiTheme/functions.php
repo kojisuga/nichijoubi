@@ -502,3 +502,6 @@ function enqueue_my_scripts() {
 	));
 }
 add_action('wp_enqueue_scripts', 'enqueue_my_scripts');
+
+// 管理バーを非表示にする
+add_filter('show_admin_bar', '__return_false');

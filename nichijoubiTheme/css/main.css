@@ -17,6 +17,7 @@ html{
 .pageWrapper > .contentsWrapper > #top > .thumbnailWrapper{
 	width:calc(100vw + 240px);
 	height:calc(100vh + 240px);
+	padding: 10px;
 }
 
 .pageWrapper > .contentsWrapper > #top > .thumbnailWrapper > .linePats{
@@ -28,8 +29,8 @@ html{
 .pageWrapper > .contentsWrapper > #top > .thumbnailWrapper > .linePats > .block{
 	width:100%;
 	height:calc(240px * 0.6666);
-	margin-bottom: 25px;
-	background:green;
+	margin-bottom: 13px;
+    padding-top: 10px;
 }
 .pageWrapper > .contentsWrapper > #top > .thumbnailWrapper > .linePats > .block > .image{
 	width:100%;
