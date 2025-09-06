@@ -378,14 +378,90 @@ add_action( 'wp_head', 'add_my_ajaxurl', 1 );
  */
 function genTopThumnail() {
 
-	$width = $_POST[
-	echo "pass";
+	$outputCode = "";
+
+	$width = $_POST['width'];
+	$height = $_POST['height'];
+
+	// 投稿データの取得
+	$args = array(
+		'post_type' => 'post', // 投稿タイプを指定 (カスタム投稿タイプの場合は、そのスラッグを指定)
+		'category_name' => 'exhibitor', // カテゴリのスラッグ（名前ではないので注意）
+		'posts_per_page' => -1, // 全ての投稿を取得する場合は -1 を指定
+	);
+	
+	// 新しいWP_Queryインスタンスを作成
+	$exhibitor_posts = new WP_Query($args);
+	
+	// ループ開始
+	if ($exhibitor_posts->have_posts()) {
+		while ($exhibitor_posts->have_posts()) {
+			$exhibitor_posts->the_post();
+			?>
+			<div class="exhibitor-post">
+				<h2><?php the_title(); ?></h2>
+				<p><?php the_excerpt(); ?></p>
+				<a href="<?php the_permalink(); ?>">詳細を見る</a>
+			</div>
+			<?php
+		}
+		// メインクエリをリセット
+		wp_reset_postdata();
+	} else {
+		// 投稿が見つからなかった場合の処理
+		echo '該当する投稿は見つかりませんでした。';
+	}
+
+	// 画像情報を取得
+
+	// 画像情報に紐づく投稿番号を取得
+	
+
+	// line数を決定
+	$lineNumber = intval($width / 240)+1;
+	// block数を決定
+	$blockNumber =  intval($height / (240 * 0.6666) )+1;
+
+	$outputCode .= '<div class="thumbnailWrapper">';
+	for($i = 0; $i < $lineNumber; $i++){
+		$outputCode .= '<div class="linePats">';
+
+		for($j = 0; $j < $blockNumber; $j++){
+			$outputCode .= '<div class="block">';
+			$outputCode .=  getRandomNumber(7);
+			$outputCode .= '</div>';
+		}
+
+		$outputCode .= '</div>';
+	}
+	$outputCode .= '</div>';
+
+	echo $outputCode;
+	die();
 }
 // ログインユーザー向け
-add_action('wp_ajax_genTopThumnail', 'genTopThumnail_callback');
+add_action('wp_ajax_genTopThumnail', 'genTopThumnail');
 
 // 非ログインユーザー向け
-add_action('wp_ajax_nopriv_genTopThumnail', 'genTopThumnail_callback');
+add_action('wp_ajax_nopriv_genTopThumnail', 'genTopThumnail');
+
+// ランダム正数取得
+function getRandomNumber(int $maxNumber) {
+	// 0 から $maxNumber までの値を格納する静的変数
+	// この変数は関数の呼び出し間で状態を保持します
+	static $numbers = [];
+
+	// もし配列が空になったら、新しい周期として初期化
+	if (empty($numbers)) {
+		// 0 から $maxNumber までの数値の配列を作成
+		$numbers = range(0, $maxNumber);
+		// 配列をシャッフルしてランダムな順序にする
+		shuffle($numbers);
+	}
+	// 配列の先頭から1つ要素を取り出して返却
+	return array_shift($numbers);
+}
+
 /**
  * javascriptにてテーマフォルダのURLを渡す
  */
