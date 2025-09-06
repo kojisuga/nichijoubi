@@ -1,0 +1,39 @@
+
+.pageWrapper{
+
+}
+.pageWrapper > .contentsWrapper{
+
+}
+.pageWrapper > .contentsWrapper > .contents{
+
+}
+.pageWrapper > .contentsWrapper > #top{
+	width:100vw;
+	height:100vh;
+	background-red;
+}
+.pageWrapper > .contentsWrapper > #top > .linePats{
+ 
+    display: inline-block;
+	width:240px;
+	padding: 0 10px;
+}
+
+.pageWrapper > .contentsWrapper > #top > .linePats > .block{
+	width:100%;
+	height:calc(240px * 0.6666);
+	margin-bottom: 25px;
+	background:green;
+
+
+.pageWrapper > .contentsWrapper > #top > .linePats > .block > .image{
+}
+.pageWrapper > .contentsWrapper > #top > .linePats > .block > .image img{
+}
+
+
+/* スマホ縦画面用 */
+@media only screen and (max-width: 1024px) and (orientation:portrait){
+
+}

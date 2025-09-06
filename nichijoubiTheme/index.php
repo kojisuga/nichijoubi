@@ -8,6 +8,33 @@
 <?php require "common.php"; ?> 																	<!-- Call common.php ---->
 <script src="//code.jquery.com/jquery-3.2.1.min.js"></script>
 
+<script>
+jQuery(document).ready(function($) {
+    // 画面サイズを取得
+
+	console.log("ready");
+    const viewportHeight = window.innerHeight;
+    const viewportWidth = window.innerWidth;
+
+    // AJAXリクエストでPHPに値を送信
+	$.ajax({
+		type: 'POST',
+		url: ajaxurl,
+		data: {
+			'action' : 'genTopThumnail',
+			'width' : viewportWidth,
+			'height' : viewportHeight,
+		},
+		success: function( response ){
+			alert( response );
+		}
+	});
+});
+
+
+</script>
+
+
 </head>
 
 <body>
@@ -17,7 +44,22 @@
 	<div class="contentsWrapper">
 		
 		<div class="contents" id="top">
-			
+			<div class="linePats"><div class="block"></div><!-- block --><div class="block"></div><!-- block --><div class="block"></div><!-- block --><div class="block"></div><!-- block --><div class="block"></div><!-- block --><div class="block"></div><!-- block --><div class="block"></div><!-- block --><div class="block"></div><!-- block --><div class="block"></div><!-- block -->
+			</div><!-- linePats -->
+			<div class="linePats"><div class="block"></div><!-- block --><div class="block"></div><!-- block --><div class="block"></div><!-- block --><div class="block"></div><!-- block --><div class="block"></div><!-- block --><div class="block"></div><!-- block --><div class="block"></div><!-- block --><div class="block"></div><!-- block --><div class="block"></div><!-- block -->
+			</div><!-- linePats -->
+			<div class="linePats"><div class="block"></div><!-- block --><div class="block"></div><!-- block --><div class="block"></div><!-- block --><div class="block"></div><!-- block --><div class="block"></div><!-- block --><div class="block"></div><!-- block --><div class="block"></div><!-- block --><div class="block"></div><!-- block --><div class="block"></div><!-- block -->
+			</div><!-- linePats -->
+			<div class="linePats"><div class="block"></div><!-- block --><div class="block"></div><!-- block --><div class="block"></div><!-- block --><div class="block"></div><!-- block --><div class="block"></div><!-- block --><div class="block"></div><!-- block --><div class="block"></div><!-- block --><div class="block"></div><!-- block --><div class="block"></div><!-- block -->
+			</div><!-- linePats -->
+			<div class="linePats"><div class="block"></div><!-- block --><div class="block"></div><!-- block --><div class="block"></div><!-- block --><div class="block"></div><!-- block --><div class="block"></div><!-- block --><div class="block"></div><!-- block --><div class="block"></div><!-- block --><div class="block"></div><!-- block --><div class="block"></div><!-- block -->
+			</div><!-- linePats -->
+			<div class="linePats"><div class="block"></div><!-- block --><div class="block"></div><!-- block --><div class="block"></div><!-- block --><div class="block"></div><!-- block --><div class="block"></div><!-- block --><div class="block"></div><!-- block --><div class="block"></div><!-- block --><div class="block"></div><!-- block --><div class="block"></div><!-- block -->
+			</div><!-- linePats -->
+			<div class="linePats"><div class="block"></div><!-- block --><div class="block"></div><!-- block --><div class="block"></div><!-- block --><div class="block"></div><!-- block --><div class="block"></div><!-- block --><div class="block"></div><!-- block --><div class="block"></div><!-- block --><div class="block"></div><!-- block --><div class="block"></div><!-- block -->
+			</div><!-- linePats -->
+			<div class="linePats"><div class="block"></div><!-- block --><div class="block"></div><!-- block --><div class="block"></div><!-- block --><div class="block"></div><!-- block --><div class="block"></div><!-- block --><div class="block"></div><!-- block --><div class="block"></div><!-- block --><div class="block"></div><!-- block --><div class="block"></div><!-- block -->
+			</div><!-- linePats -->
 		
 	
 		</div><!-- contents -->
