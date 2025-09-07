@@ -27,10 +27,15 @@ jQuery(document).ready(function($) {
 		success: function( response ){
 			console.log( response );
 			$('#top').html(response);
+			
+			
 		}
 	});
 });
 
+function viewThumbnail(){
+
+}
 
 </script>
 

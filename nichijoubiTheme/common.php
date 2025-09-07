@@ -20,7 +20,7 @@
 <!--〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓-->
 <!--Css------------------------------------------------------------------------------------------------------------------>
 <!--〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓-->
-<link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/css/Common.css?<?php echo file_date(get_template_directory() . '/css/Common.css'); ?>" 
+<link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/css/common.css?<?php echo file_date(get_template_directory() . '/css/common.css'); ?>" 
 
 
 <!-- -->

@@ -1,0 +1,41 @@
+.menu{
+	position: fixed;
+    top: 0;
+    right: 0;
+    z-index: 100;
+    background: white;
+}
+.menu > .background {
+    height: 100vh;
+    padding: 20px;
+    width: 180px;
+    padding-top: 70px;
+    text-align: center;
+}
+.menu > .background > .logo {
+	width:80px;
+    width: 100%;
+    text-align: center;
+    margin-bottom: 70px;
+}
+.menu > .background > .logo img{
+    width: 80px;
+}
+.menu > .background > .menuListWrapper {
+    display: inline-block;
+    text-align: left;
+}
+
+.menu > .background > .menuListWrapper > .aLink {
+	color:black;
+}
+
+.menu > .background > .menuListWrapper > .aLink > .list{
+
+}
+
+
+/* スマホ縦画面用 */
+@media only screen and (max-width: 1024px) and (orientation:portrait){
+
+}

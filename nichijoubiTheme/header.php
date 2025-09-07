@@ -1,7 +1,7 @@
 <!--〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓-->
 <!--Css------------------------------------------------------------------------------------------------------------------>
 <!--〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓-->
-<link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/css/Header.css?<?php echo file_date(get_template_directory() . '/css/Header.css'); ?>" type="text/css" />
+<link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/css/header.css?<?php echo file_date(get_template_directory() . '/css/header.css'); ?>" type="text/css" />
 
 <!--〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓-->
 <!--Jquery--------------------------------------------------------------------------------------------------------------->
@@ -65,7 +65,9 @@ $(function(){
 ?>
 <div class="menu">
 	<div class="background">
-		<div class="logo"></div>
+		<div class="logo">
+			<img src="<?php echo get_template_directory_uri(); ?>/image/common/nichiyoubi.png">
+		</div>
 		<div class="menuListWrapper">
 			<a class="aLink" href="<?php echo get_home_url() ?>/"><div class="list">top</div></a>
 			<a class="aLink" href="<?php echo get_home_url() ?>/"><div class="list">about</div></a>

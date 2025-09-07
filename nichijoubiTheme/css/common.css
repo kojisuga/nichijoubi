@@ -1,0 +1,444 @@
+/*====================================================================================*/
+/* Common
+/*====================================================================================*/
+@import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600');
+@import url("https://fonts.googleapis.com/css?family=Josefin+Sans:100,100i,300,300i,400,400i,600,600i,700,700i");
+@import url("https://fonts.googleapis.com/css?family=Zen+Kaku+Gothic+New:100,100i,300,300i,400,400i,600,600i,700,700i");
+:root {
+}
+html{
+	font-size: 100%;
+}
+
+body{
+	margin:0;            /* 余白消去 */
+    --key-color: #9facb7;
+
+	/* フォント */
+	-webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+	
+/*    font-family: 'Noto Sans JP', sans-serif;*/
+/*	font-family: "kozuka-gothic-pro", sans-serif;		*/
+    font-family: "Yu Mincho", YuMincho, "Hiragino Mincho ProN", "Hiragino Mincho Pro", serif;
+
+/*	font-family: "游ゴシック","Yu Gothic",YuGothic,"Noto Sans JP","Hiragino Kaku Gothic ProN","Hiragino Kaku Gothic Pro","メイリオ",Meiryo,"ＭＳ ゴシック",sans-serif;*/
+/*	font-family: "Zen Kaku Gothic New","Yu Gothic", "YuGothic", "Hiragino Kaku Gothic ProN", "Meiryo", sans-serif !important;	*/
+/*	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;		*/
+	font-weight: 500;
+
+	color:black;
+    line-height: 1.8;
+    letter-spacing:0.07em;
+    margin: 0;
+    text-rendering: optimizeLegibility;
+    
+	-webkit-text-size-adjust:none !important;
+	-moz-text-size-adjust:none !important;
+	-ms-text-size-adjust:none !important;
+	-text-size-adjust:none !important;
+	text-size-adjust:none !important;
+}
+.pcDisp{
+	
+}
+.mobileDisp{
+	display:none !important;
+}
+
+.templateTopPadding{
+    padding-top: 140px;;
+}
+.templatePageWrapper {
+    /* 追加: 親要素に相対位置を指定 */
+    position: relative;
+	min-height: calc(100vh - 140px - 90px);
+}
+
+.templatePageWrapper > .title {
+    text-align: center;
+    letter-spacing: 0.1em;
+    margin-bottom: 10px;
+}
+
+.templatePageWrapper > .titleAfterBar {
+    display: inline-block;
+    width: 0.5px;
+    height: 120px;
+    background-color: black;
+    content: " ";
+    margin-bottom: 40px;
+}
+
+.templatePageWrapper > .title > .jp {
+    font-size: 220%;
+    letter-spacing: 0.3em;
+	display:inline;
+    writing-mode: vertical-rl;
+    text-orientation: upright;
+    white-space: nowrap;
+}
+/* font */
+/* Layout関連 */
+.Clean{
+	opacity:0;
+}
+.AppearClean{
+	opacity:1;
+}
+
+.hide{
+	display:none;
+}
+
+.hiddenFade {
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.5s ease; /* フェードイン・フェードアウトのアニメーションを追加 */
+}
+
+.visibleFade {
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 0.5s ease;
+}
+
+.LayoutLeft{
+	display:inline-block;
+	text-align:left;
+}
+.LayoutRight{
+	display:inline-block;
+	text-align:right;
+}
+.LayoutClear{
+    clear:both;
+}
+
+/* Animation関連 */
+.opacity1{
+	opacity:1 !important;
+}
+.BlurIn{
+    filter: blur(6px); 
+	opacity:0;
+	
+	/* animation */	
+    -webkit-transition: all 2s;
+    -moz-transition: all 2s;
+    -ms-transition: all 2s;
+    -o-transition: all 2s;
+    transition: all 2s;
+}
+.BlurInClr{
+    filter: blur(0px);
+	opacity:1;
+}
+.BlurInUp{
+    filter: blur(6px);
+	opacity:0;
+	
+	/* Layout*/
+	-moz-transform   : translateY(60px);
+	-webkit-transform: translateY(60px);
+	-o-transform     : translateY(60px);
+	-ms-transform    : translateY(60px);
+	transform        : translateY(60px);
+
+	/* animation */	
+    -webkit-transition: all 2s;
+    -moz-transition: all 2s;
+    -ms-transition: all 2s;
+    -o-transition: all 2s;
+    transition: all 2s;
+}
+.BlurInUpClr{
+    filter: blur(0px);
+	opacity:1;
+
+	-moz-transform   : translateY(0px);
+	-webkit-transform: translateY(0px);
+	-o-transform     : translateY(0px);
+	-ms-transform    : translateY(0px);
+	transform        : translateY(0px);	
+}
+.FadeIn{
+	opacity:0.0;
+
+	/* animation */	
+    -webkit-transition: all 2s;
+    -moz-transition: all 2s;
+    -ms-transition: all 2s;
+    -o-transition: all 2s;
+    transition: all 2s;
+}
+.FadeInUp{
+	opacity:0.0;
+
+	/* animation */	
+    -webkit-transition: all 2s;
+    -moz-transition: all 2s;
+    -ms-transition: all 2s;
+    -o-transition: all 2s;
+    transition: all 2s;
+
+	/* Layout*/
+	-moz-transform   : translateY(30px);
+	-webkit-transform: translateY(30px);
+	-o-transform     : translateY(30px);
+	-ms-transform    : translateY(30px);
+	transform        : translateY(30px);
+
+
+}
+.FadeInLeft{
+	opacity:0.0;
+
+	/* animation */	
+    -webkit-transition: all 1s;
+    -moz-transition: all 1s;
+    -ms-transition: all 1s;
+    -o-transition: all 1s;
+    transition: all 1s;
+
+	/* Layout*/
+	-moz-transform   : translateX(50px);
+	-webkit-transform: translateX(50px);
+	-o-transform     : translateX(50px);
+	-ms-transform    : translateX(50px);
+	transform        : translateX(50px);
+	
+
+}
+.FadeInRight{
+	opacity:0.0;
+
+	/* animation */	
+    -webkit-transition: all 1s;
+    -moz-transition: all 1s;
+    -ms-transition: all 1s;
+    -o-transition: all 1s;
+    transition: all 1s;
+
+	/* Layout*/
+	-moz-transform   : translateX(-50px);
+	-webkit-transform: translateX(-50px);
+	-o-transform     : translateX(-50px);
+	-ms-transform    : translateX(-50px);
+	transform        : translateX(-50px);
+}
+.FadeInSlideMaskText{
+	
+	/* Layout */
+	width:0%;
+	overflow-x:hidden;
+	
+	/* animation */	
+    -webkit-transition: all 2s;
+    -moz-transition: all 2s;
+    -ms-transition: all 2s;
+    -o-transition: all 2s;
+    transition: all 2s;
+}
+.SlideMaskText{	
+	/* Layout */
+	width:0%;
+	overflow-x:hidden;
+	
+	/* animation */	
+    -webkit-transition: all 1.5s;
+    -moz-transition: all 1.5s;
+    -ms-transition: all 1.5s;
+    -o-transition: all 1.5s;
+    transition: all 1.5s;
+}
+.animation{
+	/* animation */	
+    -webkit-transition: all 1s;
+    -moz-transition: all 1s;
+    -ms-transition: all 1s;
+    -o-transition: all 1s;
+    transition: all 1s;
+
+}
+.delay250ms{
+	transition-delay: 250ms;
+}
+.delay500ms{
+	transition-delay: 500ms;
+}
+.delay500ms{
+	transition-delay: 750ms;
+}
+.delay1000ms{
+	transition-delay: 1000ms;
+}
+
+.ReadMoreVisible {
+      opacity: 1;
+      animation-duration: 2s;
+      animation-name: fade-in;
+      -moz-animation-duration: 2s;
+      -moz-animation-name: fade-in;
+      -webkit-animation-duration: 2s;
+      -webkit-animation-name: fade-in;
+}
+/* ExtentionButton */
+.extensionWrapper{
+	cursor:pointer;
+	display:none;
+}
+.extension{
+	display:inline-block;
+}
+.disableBtn{
+	
+}
+
+/* text underline effect */
+a{
+	color:black;
+	outline: none !important;
+}
+
+/* OverLine Effect */
+.OverlineEffect{
+	position:relative;
+}
+.OverlineEffect::after {
+	color:black;
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  content: '';
+  width: 100%;
+  height: 1px;
+  background: #333;
+  transform: scale(0, 1);
+  transform-origin: left top;
+  transition: transform .3s;
+}
+.OverlineEffect:hover::after {
+　color:black;
+  transform: scale(1, 1);
+}
+
+
+/* Graphic */
+
+
+/* Font */
+.titleFonts {
+    font-family: "kozuka-gothic-pro", sans-serif;
+    font-weight: 100;
+}
+
+.fs0{
+
+}
+.fs1{
+	font-size:0.7em;
+	letter-spacing:0.1em;
+}
+.fs2{
+	font-size:0.8em;
+	letter-spacing:0.1em;
+}
+.fs3{
+	font-size: 1.3rem;
+    font-weight: 500;
+	letter-spacing:0.1em;
+}
+.fs4{
+	font-size: 1.5rem;
+	letter-spacing:0.1em;
+}
+.fs5{
+	font-size: 1.7rem;
+    font-weight: 300;
+	letter-spacing:0.1em;
+}
+.fs6{
+	font-size: 2.0rem;
+	font-weight: 300;
+	letter-spacing:0.1em;
+}
+.fs7{
+	font-size:  1.8rem;
+    font-weight: 300;
+    letter-spacing:0.1em;
+}
+.fs8{
+	font-size: 2.4rem;
+	letter-spacing:0.1em;
+}
+
+.p{
+    display: block;
+    -webkit-margin-before: 0;
+    -webkit-margin-after: 0;
+    -webkit-margin-start: 0;
+    -webkit-margin-end: 0;
+}
+.divBtn{
+	padding: 5px 10px;
+	border:solid 1px black;
+	cursor:pointer;
+	
+	/* animation */	
+    -webkit-transition: all 0.5s;
+    -moz-transition: all 0.5s;
+    -ms-transition: all 0.5s;
+    -o-transition: all 0.5s;
+	transition: all 0.5s;
+	
+}
+.divBtn:hover{
+	border:solid 1px black;
+	background-color:black;
+	color:white;
+}
+
+/*====================================================================================*/
+/* スマフォ縦表示
+/*====================================================================================*/
+/* ipad pro? */
+@media only screen and (max-width: 1024px) and (orientation:portrait){
+	body{
+
+	}
+	.pcDisp{
+		display:none !important;
+	}
+	.mobileDisp{
+		display:initial !important;
+	}
+
+/* OverLine Effect */
+.OverlineEffect{
+	position:relative;
+}
+.OverlineEffect::after {
+	display:none;
+}
+.OverlineEffect:hover::after {
+　color:black;
+  transform: scale(1, 1);
+}
+
+/* Font */
+
+
+}
+/*====================================================================================*/
+/* スマフォ　横表示
+/*====================================================================================*/
+@media only screen and (max-width: 1024px) and (orientation:landscape){
+body{
+
+}
+
+/* Font */
+
+
+}
