@@ -420,9 +420,9 @@ function genTopThumnail() {
 	
 
 	// line数を決定
-	$lineNumber = intval($width / 240)+1;
+	$lineNumber = intval($width / 300)+1;
 	// block数を決定
-	$blockNumber =  intval($height / (240 * 0.6666) )+1;
+	$blockNumber =  intval($height / (300 * 0.6666) )+1;
 
 	$outputCode .= '<div class="thumbnailWrapper">';
 	for($i = 0; $i < $lineNumber; $i++){
@@ -430,7 +430,7 @@ function genTopThumnail() {
 
 		for($j = 0; $j < $blockNumber; $j++){
 			$outputCode .= '<div class="block">';
-			$randumIndex = getRandomNumber(count($arPostID));
+			$randumIndex = getRandomNumber4Post(count($arPostID));
 			
 			$post_id = $arPostID[$randumIndex]; // 例: 投稿IDが123の場合
 
@@ -441,19 +441,24 @@ function genTopThumnail() {
 
 			// 取得した値を使って何かを出力
 
-
+			$arImageList = array();
 			// 繰り返しフィールドの値を取得
 			if ( have_rows('imageList', $post_id) ) {
 				while ( have_rows('imageList', $post_id) ) {
 					the_row();
 					// サブフィールドの画像フィールドの値を取得
 					$image = get_sub_field('image');
-					$outputCode .= '<div class="image ">';
-					$outputCode .= '<img class="thumbnailImg" src="'.$image.'" data-postID="'.$post_id.'">';
-					$outputCode .= '</div>';
+					$arImageList[] = $image;
 				}
 			}
-			
+			getRandomNumber4Img(count($arImageList) - 1,true);
+
+			for ($k = count($arImageList) - 1; $k >= 0; $k--) {
+				$randaomIndex = getRandomNumber4Img(count($arImageList) - 1,false);
+				$outputCode .= '<div class="image">';
+				$outputCode .= '<img class="thumbnailImg" src="'.$arImageList[$randaomIndex].'" data-postID="'.$post_id.'" data-imageIndex="'.$randaomIndex.'" data-ImageCount="'.count($arImageList).'">';
+				$outputCode .= '</div>';
+			}
 			
 			$outputCode .= '</div>';
 		}
@@ -472,20 +477,46 @@ add_action('wp_ajax_genTopThumnail', 'genTopThumnail');
 add_action('wp_ajax_nopriv_genTopThumnail', 'genTopThumnail');
 
 // ランダム正数取得
-function getRandomNumber(int $maxNumber) {
-	// 0 から $maxNumber までの値を格納する静的変数
-	// この変数は関数の呼び出し間で状態を保持します
-	static $numbers = [];
+function getRandomNumber4Post(int $maxNumber, bool $reset = false) {
+    static $numbers4post = [];
 
-	// もし配列が空になったら、新しい周期として初期化
-	if (empty($numbers)) {
-		// 0 から $maxNumber までの数値の配列を作成
-		$numbers = range(0, $maxNumber);
-		// 配列をシャッフルしてランダムな順序にする
-		shuffle($numbers);
-	}
-	// 配列の先頭から1つ要素を取り出して返却
-	return array_shift($numbers);
+    // リセットフラグが true の場合は初期化して終了
+    if ($reset) {
+        $numbers4post = [];
+        return null; // この行が if ブロック内にあるべき
+    }
+
+    // 配列が空なら新しい周期として初期化
+    if (empty($numbers4post)) {
+        $numbers4post = range(0, $maxNumber);
+        shuffle($numbers4post);
+    }
+
+    // 配列の先頭から1つ要素を取り出して返却
+    return array_shift($numbers4post);
+}
+
+
+function getRandomNumber4Img(int $maxNumber, bool $reset = false) {
+    static $numbers4Img = [];
+//	var_dump("call getRandomNumber4Img");
+//	var_dump("<br>");
+
+    // Reset the array if the $reset flag is true
+    if ($reset) {
+        $numbers4Img = [];
+        return null;
+    }
+
+    // Initialize and shuffle the array if it's empty
+    if (empty($numbers4Img)) {
+//		var_dump("shuffle");
+        $numbers4Img = range(0, $maxNumber);
+        shuffle($numbers4Img);
+    }
+    
+    // Return the next number from the array
+    return array_shift($numbers4Img);
 }
 
 /**

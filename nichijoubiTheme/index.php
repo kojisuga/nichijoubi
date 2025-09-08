@@ -34,11 +34,27 @@ jQuery(document).ready(function($) {
 
 function viewThumbnail(){
 	
-	  $('.thumbnailImg').on('load', function() {
-		// 画像の読み込みが完了した後に実行される処理
-		$(this).css("opacity","1");
-		// $('.loading-spinner').hide();
-	});
+    $('.block').each(function() {
+        const $block = $(this);
+        const $images = $block.find('.thumbnailImg');
+        const totalImages = $images.length;
+        let loadedImages = 0;
+
+        // 画像の読み込み完了をチェック
+        $images.on('load', function() {
+            loadedImages++;
+            // すべての画像の読み込みが完了したら
+            if (loadedImages === totalImages) {
+                // 親要素の .block にクラスを追加
+                $block.css("opacity","1");
+            }
+        }).each(function() {
+            // キャッシュから読み込まれた場合に備えて、手動で load イベントをトリガー
+            if (this.complete) {
+                $(this).css("opacity","1");
+            }
+        });
+    });
 	
 }
 
