@@ -448,10 +448,9 @@ function genTopThumnail() {
 					the_row();
 					// サブフィールドの画像フィールドの値を取得
 					$image = get_sub_field('image');
-					$outputCode .= '<div class="image">';
+					$outputCode .= '<div class="image ">';
 					$outputCode .= '<img class="thumbnailImg" src="'.$image.'" data-postID="'.$post_id.'">';
 					$outputCode .= '</div>';
-break;
 				}
 			}
 			
