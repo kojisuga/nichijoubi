@@ -66,7 +66,7 @@ $(function(){
 <div class="menu">
 	<div class="background">
 		<div class="logo">
-			<img src="<?php echo get_template_directory_uri(); ?>/image/common/nichiyoubi.png">
+			<img src="<?php echo get_template_directory_uri(); ?>/image/common/nichijoubi_logo_bk.png">
 		</div>
 		<div class="menuListWrapper">
 			<a class="aLink" href="<?php echo get_home_url() ?>/"><div class="list">top</div></a>

@@ -41,7 +41,16 @@ html{
 	width:100%;
 	height:100%;
 }
-
+.thumbnailImg{
+	opacity:0;
+	
+	/* for animation */
+	-webkit-transition: all 1s;
+    -moz-transition: all 1s;
+    -ms-transition: all 1s;
+    -o-transition: all 1s;
+    transition: all 1s;
+}
 
 /* スマホ縦画面用 */
 @media only screen and (max-width: 1024px) and (orientation:portrait){

@@ -25,16 +25,21 @@ jQuery(document).ready(function($) {
 			'height' : viewportHeight,
 		},
 		success: function( response ){
-			console.log( response );
 			$('#top').html(response);
-			
+			viewThumbnail();
 			
 		}
 	});
 });
 
 function viewThumbnail(){
-
+	
+	  $('.thumbnailImg').on('load', function() {
+		// 画像の読み込みが完了した後に実行される処理
+		$(this).css("opacity","1");
+		// $('.loading-spinner').hide();
+	});
+	
 }
 
 </script>
