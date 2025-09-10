@@ -73,7 +73,38 @@ $(function(){
 			<a class="aLink" href="<?php echo get_home_url() ?>/"><div class="list">about</div></a>
 			<a class="aLink" href="<?php echo get_home_url() ?>/"><div class="list">exhibitor</div></a>
 			<a class="aLink" href="<?php echo get_home_url() ?>/"><div class="list">contact</div></a>
-		</div><!-- background -->
+		</div><!-- menuListWrapper -->
+		<div class="lang">
+			<div class="label">Lang</div>
+			
+			<div class="btnWrapper">
+				<div class="btn">JP</div> / 
+				<div class="btn">TW</div> / 
+				<div class="btn">EN</div>
+			</div><!-- background -->
+		</div>
+
+		<div class="sArea">
+			<div class="logo">
+				<img src="<?php echo get_template_directory_uri(); ?>/image/common/shimasakuLogo.png">
+			</div>
+			<div class="info">
+				<div class="period">
+					<div class="day">
+						11/21(金) <br>
+						11/22(土) <br>
+						11/23(日) <br>
+					</div>
+					<div class="time">
+						10:30 - 17:30
+					</div>
+				</div>
+				<div class="place">
+					松山文創園區<br>
+					北向製菸工廠
+				</div>
+			</div>
+		</div>
 	</div><!-- background -->
 	<div class="mobDisp menuButton"></div>
 

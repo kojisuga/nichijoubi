@@ -429,7 +429,9 @@ function genTopThumnail() {
 		$outputCode .= '<div class="linePats">';
 
 		for($j = 0; $j < $blockNumber; $j++){
-			$outputCode .= '<div class="block">';
+
+			$blockSerialNumber = getRandomNumber4Block($blockNumber*$lineNumber)+1;
+			$outputCode .= '<div class="block" data-blockSerialNumber="'.$blockSerialNumber.'">';
 			$randumIndex = getRandomNumber4Post(count($arPostID));
 			
 			$post_id = $arPostID[$randumIndex]; // 例: 投稿IDが123の場合
@@ -456,8 +458,9 @@ function genTopThumnail() {
 			for ($k = count($arImageList) - 1; $k >= 0; $k--) {
 				$randaomIndex = getRandomNumber4Img(count($arImageList) - 1,false);
 				$outputCode .= '<div class="image">';
-				$outputCode .= '<img class="thumbnailImg" src="'.$arImageList[$randaomIndex].'" data-postID="'.$post_id.'" data-imageIndex="'.$randaomIndex.'" data-ImageCount="'.count($arImageList).'">';
+				$outputCode .= '<img class="thumbnailImg" src="'.$arImageList[$randaomIndex].'" data-postID="'.$post_id.'" data-slideNumber="'.($k+1).'" data-ImageCount="'.count($arImageList).'">';
 				$outputCode .= '</div>';
+				
 			}
 			
 			$outputCode .= '</div>';
@@ -519,6 +522,27 @@ function getRandomNumber4Img(int $maxNumber, bool $reset = false) {
     return array_shift($numbers4Img);
 }
 
+function getRandomNumber4Block(int $maxNumber, bool $reset = false) {
+    static $numbers4Block = [];
+//	var_dump("call getRandomNumber4Img");
+//	var_dump("<br>");
+
+    // Reset the array if the $reset flag is true
+    if ($reset) {
+        $numbers4Block = [];
+        return null;
+    }
+
+    // Initialize and shuffle the array if it's empty
+    if (empty($numbers4Block)) {
+//		var_dump("shuffle");
+        $numbers4Block = range(0, $maxNumber);
+        shuffle($numbers4Block);
+    }
+    
+    // Return the next number from the array
+    return array_shift($numbers4Block);
+}
 /**
  * javascriptにてテーマフォルダのURLを渡す
  */

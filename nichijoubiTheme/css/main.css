@@ -72,6 +72,36 @@ html{
     transition: all 1s;
 }
 
+#about{
+	height:100vh;
+    padding: 80px;
+	padding-right:200px;
+}
+#about > .logo{
+	text-align: right;
+}
+#about > .logo > .image{
+	width:100%;
+}
+#about > .logo > .image img{
+	width:90px;
+}
+#about > .logo > .subTitle{
+	
+}
+#about > .logo > .subTitle > .horizontal{
+	
+}
+#about > .logo > .subTitle > .vertical{
+	
+}
+#about > .message >  .vertical{
+
+}
+#about > .message >  .horizontal{
+
+}
+
 /* スマホ縦画面用 */
 @media only screen and (max-width: 1024px) and (orientation:portrait){
 

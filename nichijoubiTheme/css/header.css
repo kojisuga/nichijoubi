@@ -24,6 +24,7 @@
 .menu > .background > .menuListWrapper {
     display: inline-block;
     text-align: left;
+    margin-bottom: 70px;
 }
 
 .menu > .background > .menuListWrapper > .aLink {
@@ -34,6 +35,48 @@
 
 }
 
+.lang{
+
+}
+.lang > .label{
+
+}
+.lang > .btnWrapper{
+	display: inline-block;
+	font-size: 70%;
+}
+.lang > .btnWrapper > .btn{
+	display: inline-block;
+}
+
+.sArea{
+	position: absolute;
+    bottom: 30px;
+    display: inline-block;
+    text-align: center;
+    width: 200px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+.sArea > .logo{
+	width: 90px;
+    display: inline-block;
+}
+.sArea > .info{
+
+}
+.sArea > .info > .period{
+    margin-bottom: 10px;
+}
+.sArea > .info > .period > .day{
+    margin-bottom: 5px;
+}
+.sArea > .info > .period > .time{
+
+}
+.sArea > .info > .place{
+
+}
 
 /* スマホ縦画面用 */
 @media only screen and (max-width: 1024px) and (orientation:portrait){
