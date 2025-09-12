@@ -6,11 +6,22 @@ if ( have_posts() ) {
         the_post(); // これを呼び出すことで、ACF関数が現在の投稿を参照できるようになります
         
         // ACFフィールドの値を変数に格納
-        $exhibitor_name = get_field('exhibitorName');
+		$exhibitor_name = get_field('exhibitorName');
         $brand_name = get_field('brandName');
+
+		if($brand_name){
+			if($exhibitor_name){
+				$brand_name = " (" . $brand_name. ")";
+			}
+		}
         $genre = get_field('genre');
         $url = get_field('url');
-        
+		$instagramAccount = get_field('instagramAccount');
+		$instagramUrl = get_field('instagramUrl');
+		$mailAdress = get_field('mail');
+		$concept  = get_field('concept');
+		$commitment = get_field('commitment');
+		$message  = get_field('message');
 		if( have_rows('imageList') ):
 			
 			$arImageList = array();
@@ -46,23 +57,62 @@ if ( have_posts() ) {
 
 </div><!-- pageWrapper -->
 
-        <div class="exhibitorInfo">
-            <?php if ($exhibitor_name) : ?>
-                <p><strong>出展者名:</strong> <?php echo esc_html($exhibitor_name); ?></p>
-            <?php endif; ?>
-            
-            <?php if ($brand_name) : ?>
-                <p><strong>ブランド名:</strong> <?php echo esc_html($brand_name); ?></p>
-            <?php endif; ?>
-            
-            <?php if ($genre) : ?>
-                <p><strong>ジャンル:</strong> <?php echo esc_html($genre); ?></p>
-            <?php endif; ?>
-            
-            <?php if ($url) : ?>
-                <p><strong>URL:</strong> <a href="<?php echo esc_url($url); ?>" target="_blank"><?php echo esc_html($url); ?></a></p>
-            <?php endif; ?>
-        </div>
+	<div class="exhibitorInfo">
+		<div class="captionArea fadeInMaskGra">
+			<div class="parts">
+				<div class="data">
+					<?php echo $exhibitor_name.$brand_name." — ".$genre; ?>
+				</div>
+			</div>
+			<div class="parts">
+				<div class="label">
+					<img src="<?php echo get_template_directory_uri(); ?>/image/common/icon/iconMail.png">
+				</div>
+				<div class="data">
+					<?php echo $mailAdress; ?>
+				</div>
+			</div>
+			<div class="parts">
+				<div class="label">
+					<img src="<?php echo get_template_directory_uri(); ?>/image/common/icon/iconWeb.png">
+				</div>
+				<div class="data">
+					<?php echo '<a href="'. $url .'" target="_blank">'. $url .'</a>'; ?>
+				</div>
+			</div>
+			<div class="parts">
+				<div class="label">
+					<img src="<?php echo get_template_directory_uri(); ?>/image/common/icon/iconSns.png">
+				</div>
+				<div class="data">
+					<?php echo '<a href="'. $instagramUrl .'" target="_blank">'. $instagramAccount .'</a>';?>
+				</div>
+			</div>
+			<div class="caption" id="concept">
+				<div class="title">concept</div>
+				<div class="text"><?php echo $concept; ?></div>
+			</div><!-- caption -->
+			<div class="caption" id="message">
+				<div class="title">message</div>
+				<div class="text"><?php echo $message; ?></div>
+			</div><!-- caption -->
+			<div class="caption" id="commitment">
+				<div class="title">commitment</div>
+				<div class="text"><?php echo $commitment; ?></div>
+			</div><!-- caption -->
+			
+
+		</div><!-- captionArea -->
+		<div class="imageArea">
+<?php
+	for($i = 1;$i<count($arImageList);$i++){
+		echo '<div class="image">';
+		echo	'<img src="'.$arImageList[$i].'"';
+		echo '</div>';
+	}
+?>
+		</div>
+	</div>
 
 
 <?php

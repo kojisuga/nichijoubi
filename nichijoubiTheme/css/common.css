@@ -252,6 +252,15 @@ body{
     -o-transition: all 1.5s;
     transition: all 1.5s;
 }
+.fadeInMaskGra{
+	
+}
+fadeInMaskGra::after{
+	content:" ";
+	width:100%;
+	height:100%;
+	
+}
 .animation{
 	/* animation */	
     -webkit-transition: all 1s;

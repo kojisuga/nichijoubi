@@ -14,33 +14,47 @@
 }
 
 .exhibitorInfo{
+	padding-left:80px;
 }
 .exhibitorInfo > .captionArea{
 	display:inline-block;
-	position:sticky:
+	position:sticky;
 	top:80px;
+    width: 550px;
+    vertical-align: top;
 }
 .exhibitorInfo > .captionArea > .parts{
 	margin-bottom:10px;
 }
 .exhibitorInfo > .captionArea > .parts > .label{
-	margin-right:30px;
+	margin-right:10px;
 	display:inline-block;
+	vertical-align:middle;
+}
+.exhibitorInfo > .captionArea > .parts > .label img{
+	width:30px;
 }
 .exhibitorInfo > .captionArea > .parts > .data{
 	display:inline-block;
-
+	vertical-align:middle;
+}
+.exhibitorInfo > .captionArea > .caption{
+	margin-bottom:30px;
+	padding-right:30px;
+}
+.exhibitorInfo > .captionArea > .caption > .title{
+	font-size:120%;
+	margin-bottom:10px;
+}
+.exhibitorInfo > .captionArea > .caption > .text{
 }
 .exhibitorInfo > .imageArea{
 	display:inline-block;
-
+    width: calc(100% - 570px);
 }
 .exhibitorInfo > .imageArea > .image{
 	margin-bottom:10px;
-
 }
-
-
 
 /* スマホ縦画面用 */
 @media only screen and (max-width: 1024px) and (orientation:portrait){
