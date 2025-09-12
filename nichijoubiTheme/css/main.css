@@ -87,7 +87,7 @@ html{
 	width:90px;
 }
 #about > .logo > .subTitle{
-	
+	    padding-right: 15px;
 }
 #about > .logo > .subTitle > .horizontal{
 	
@@ -95,11 +95,213 @@ html{
 #about > .logo > .subTitle > .vertical{
 	
 }
+#about > .message{
+    width: 100%;
+    height: calc(100vh - 450px);
+    position: relative;
+}
 #about > .message >  .vertical{
-
+	writing-mode: vertical-rl;
+    display: inline-block;
+    position: absolute;
+    right: 10px;
+    height: calc(100vh - 400px);
+    padding-top: 50px;
 }
 #about > .message >  .horizontal{
 
+}
+#exhibitorInfo{
+	
+} 
+#exhibitorInfo .parts{
+    margin-bottom: 10px;		
+} 
+.parts > .genre{
+    display: inline-block;
+    margin-right: 20px;	
+} 
+.parts > .exhibitorName{
+    display: inline-block;
+
+} 
+.parts > .brandName{
+    display: inline-block;	
+} 
+.parts > .subExhibitor{
+	border-left: solid 1px;
+    padding-left: 10px;
+    margin-left: 17px;
+    padding-top: 5px;
+
+}
+#exhibitorInfo{
+	display: inline-block;
+    position: absolute;
+    bottom: 20px;
+}
+
+#exhibitorInfo > .instroduction{
+	width:500px;
+	margin-bottom:30px;
+
+}
+
+#exhibitorInfo > .instroduction > .teamName{
+
+}
+
+#exhibitorInfo > .instroduction > .concept{
+
+}
+#exhibition,#contact{
+	padding:80px;
+	text-align:center;
+}
+.contents > .title{
+    font-size: 200%;
+
+}
+.contents > .title > .vLine{
+	content:" ";
+    position: absolute;
+    left: 50%;	
+	background:black;
+	width:1px;
+	height:80px;
+}
+#exhibition > .captionArea{
+	padding-top: 100px;
+    display: inline-block;
+    text-align: left;
+}
+#exhibition > .captionArea> .logo{
+	display:inline-block;
+	vertical-align:middle;
+}
+#exhibition > .captionArea> .logo img{
+    width: 200px;
+}
+#exhibition > .captionArea > .caption{
+	display:inline-block;
+	vertical-align:middle;
+}
+#exhibition > .captionArea > .caption{
+	margin-bottom:5px;
+}
+#exhibition > .captionArea > .caption > .text{
+	margin-bottom:15px;
+}
+#exhibition > .captionArea > .caption > .text a{
+	color:gray;
+	border-bottom:solid 1px;
+}
+
+#exhibition > .captionArea > .caption > .info{
+
+}
+#exhibition > .captionArea > .caption > .info > .parts{
+	margin-bottom:15px;
+}
+#exhibition > .captionArea > .caption > .info > .parts > .label{
+    display: inline-block;
+	margin-right:10px;
+	padding-right:10px;
+	border-right:solid 1px;
+}
+#exhibition > .captionArea > .caption > .info > .parts > .text{
+    display: inline-block;
+}
+#exhibition > .mapImage{
+	padding:0 60px;
+}
+#contact{
+
+}
+#contact > .formArea{
+	padding-top: 100px;
+
+}
+#contact > .formArea > .contactForm{
+display: inline-block;
+    text-align: left;
+}
+#contact > .formArea > .contactForm > .caption{
+}
+#contact > .formArea > .contactForm > .parts{
+	margin-bottom:10px;
+
+}
+#contact > .formArea > .contactForm > .parts > .label{
+
+}
+#contact > .formArea > .contactForm > .parts > .data{
+
+}
+
+/* form style*/
+input.text {
+    width: 400px;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    -webkit-appearance: none;
+    border-radius: 0;
+    border: 1px solid #000000;
+    border-color: #dddddd;
+    background-color: white !important;
+    color: #555555;
+    padding-bottom: 10px;
+    padding-top: 10px;
+    padding-left: 10px;
+    margin-right: 20px;
+    font-size: 12pt;
+    letter-spacing: 0.1em;
+}
+
+textarea {
+    width: 400px;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    -webkit-appearance: none;
+    border-radius: 0;
+    border: 1px solid #000000;
+    border-color: #dddddd;
+    background-color: white !important;
+    color: #555555;
+    padding-bottom: 10px;
+    padding-top: 10px;
+    padding-left: 10px;
+    margin-right: 20px;
+    font-size: 12pt;
+    letter-spacing: 0.1em;
+    /* overflow: auto; */
+    padding: 2px 6px;
+    line-height: 1.42857143;
+    resize: vertical;
+    width: 400px;
+    height: 250px;
+    margin-bottom: 5px;
+}
+
+button {
+    display: inline-block;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 15px;
+    padding-right: 15px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    /* width: 150px; */
+    border-style: solid;
+    border-width: 0.5px;
+    background-color: black;
+    border: solid 1px #dddddd;
+    color: white;
+    text-align: center;
+    transition: background-color 0.75s ease;
+    transition: color 0.75s ease;
+    font-size: 10pt;
+    letter-spacing: 0.1em;
 }
 
 /* スマホ縦画面用 */

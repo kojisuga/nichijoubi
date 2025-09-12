@@ -1,0 +1,48 @@
+
+.pageWrapper{
+
+}
+.pageWrapper > .topImage{
+	width: calc(100vw - 240px);
+    height: calc(100vh - 160px);
+    margin: 80px;
+}
+.pageWrapper > .topImage img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.exhibitorInfo{
+}
+.exhibitorInfo > .captionArea{
+	display:inline-block;
+	position:sticky:
+	top:80px;
+}
+.exhibitorInfo > .captionArea > .parts{
+	margin-bottom:10px;
+}
+.exhibitorInfo > .captionArea > .parts > .label{
+	margin-right:30px;
+	display:inline-block;
+}
+.exhibitorInfo > .captionArea > .parts > .data{
+	display:inline-block;
+
+}
+.exhibitorInfo > .imageArea{
+	display:inline-block;
+
+}
+.exhibitorInfo > .imageArea > .image{
+	margin-bottom:10px;
+
+}
+
+
+
+/* スマホ縦画面用 */
+@media only screen and (max-width: 1024px) and (orientation:portrait){
+
+}

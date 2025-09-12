@@ -8,8 +8,6 @@
 		<!--Css------------------------------------------------------------------------------------------------------------------>
 		<script>function Css_________________________________________________________________________________________(){}</script>
 		<!--〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓-->
-		<link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/css/post.css?<?php echo file_date(get_template_directory() . '/css/post.css'); ?>" type="text/css" />
-		
 		
 		<!--〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓-->
 		<!--Jquery--------------------------------------------------------------------------------------------------------------->
@@ -18,7 +16,6 @@
 		<script src="//code.jquery.com/jquery-3.2.1.min.js"></script>
 		
 		<?php require "common.php"; ?> 																	<!-- Call common.php ---->
-		<?php require "header.php"; ?> 																	<!-- Call common.php ---->
 	</head>
 	
 	<!--〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓-->
@@ -26,17 +23,16 @@
 	<script>function Body______________________________________________________________________________________(){}</script>
 	<!--〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓-->
 	<body>
+		<?php require "header.php"; ?> 																	<!-- Call common.php ---->
 
 		<?php // template切り替え
 		
-		if (has_category('works')) {
+		if (has_category('exhibitor')) {
 			// "product-original" カテゴリに属する場合の処理
-			require "single-works.php";
+			require "single-exhibitor.php";
 		} elseif (has_category('news')) {
 			// "news" カテゴリに属する場合の処理
 			require "single-news.php";
-		} elseif (has_category('gallery')) {
-			require "single-gallery.php";
 		} else {
 			// 上記のいずれにも該当しない場合のデフォルト処理
 			// echo 'This post belongs to neither "product-original" nor "news" category.';
