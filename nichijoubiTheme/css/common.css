@@ -253,14 +253,67 @@ body{
     transition: all 1.5s;
 }
 .fadeInMaskGra{
-	
+	position:relative;	
+    overflow: hidden;
+	opacity:0;
+    /* transitionをここに移動 */
+    -webkit-transition: all 1s;
+    -moz-transition: all 1s;
+    -ms-transition: all 1s;
+    -o-transition: all 1s;
+    transition: all 1s;
 }
-fadeInMaskGra::after{
-	content:" ";
-	width:100%;
-	height:100%;
-	
+.fadeInMaskGra::after {
+    position: absolute;
+    top: 0;
+    left: 0;
+    content: "";
+    width: 200%;
+    height: 200%;
+    background: white;
+    transform: translateX(0%);
+
+    /* アニメーション開始時のマスク状態 */
+/*
+    -webkit-mask-image: linear-gradient(
+        to bottom right,
+        rgba(0, 0, 0, 0) 0%,
+        rgba(0, 0, 0, 1) 0%
+    );
+    mask-image: linear-gradient(
+        to bottom right,
+        rgba(0, 0, 0, 0) 0%,
+        rgba(0, 0, 0, 1) 0%
+    );
+*/
+    /* transitionをここに移動 */
+    -webkit-transition: all 1s;
+    -moz-transition: all 1s;
+    -ms-transition: all 1s;
+    -o-transition: all 1s;
+    transition: all 1s;
 }
+.fadeInMaskGra.visible{
+	opacity:1;
+}
+/* アニメーション後の状態：親要素に.visibleが付与されたとき */
+.fadeInMaskGra.visible::after {
+    transform: translateX(100%);
+    /* グラデーションを最終的な状態に設定 */
+/*
+    -webkit-mask-image: linear-gradient(
+        to bottom right,
+        rgba(0, 0, 0, 0) 0%,
+        rgba(0, 0, 0, 1) 800%
+    );
+    mask-image: linear-gradient(
+        to bottom right,
+        rgba(0, 0, 0, 0) 0%,
+        rgba(0, 0, 0, 1) 800%
+    );
+*/
+}
+
 .animation{
 	/* animation */	
     -webkit-transition: all 1s;

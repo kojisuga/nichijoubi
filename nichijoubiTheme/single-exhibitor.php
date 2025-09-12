@@ -58,13 +58,13 @@ if ( have_posts() ) {
 </div><!-- pageWrapper -->
 
 	<div class="exhibitorInfo">
-		<div class="captionArea fadeInMaskGra">
-			<div class="parts">
+		<div class="captionArea ">
+			<div class="parts fadeInMaskGra">
 				<div class="data">
 					<?php echo $exhibitor_name.$brand_name." — ".$genre; ?>
 				</div>
 			</div>
-			<div class="parts">
+			<div class="parts fadeInMaskGra">
 				<div class="label">
 					<img src="<?php echo get_template_directory_uri(); ?>/image/common/icon/iconMail.png">
 				</div>
@@ -72,7 +72,7 @@ if ( have_posts() ) {
 					<?php echo $mailAdress; ?>
 				</div>
 			</div>
-			<div class="parts">
+			<div class="parts fadeInMaskGra">
 				<div class="label">
 					<img src="<?php echo get_template_directory_uri(); ?>/image/common/icon/iconWeb.png">
 				</div>
@@ -80,7 +80,7 @@ if ( have_posts() ) {
 					<?php echo '<a href="'. $url .'" target="_blank">'. $url .'</a>'; ?>
 				</div>
 			</div>
-			<div class="parts">
+			<div class="parts fadeInMaskGra">
 				<div class="label">
 					<img src="<?php echo get_template_directory_uri(); ?>/image/common/icon/iconSns.png">
 				</div>
@@ -88,15 +88,15 @@ if ( have_posts() ) {
 					<?php echo '<a href="'. $instagramUrl .'" target="_blank">'. $instagramAccount .'</a>';?>
 				</div>
 			</div>
-			<div class="caption" id="concept">
+			<div class="caption fadeInMaskGra" id="concept">
 				<div class="title">concept</div>
 				<div class="text"><?php echo $concept; ?></div>
 			</div><!-- caption -->
-			<div class="caption" id="message">
+			<div class="caption fadeInMaskGra" id="message">
 				<div class="title">message</div>
 				<div class="text"><?php echo $message; ?></div>
 			</div><!-- caption -->
-			<div class="caption" id="commitment">
+			<div class="caption fadeInMaskGra" id="commitment">
 				<div class="title">commitment</div>
 				<div class="text"><?php echo $commitment; ?></div>
 			</div><!-- caption -->
@@ -107,12 +107,24 @@ if ( have_posts() ) {
 <?php
 	for($i = 1;$i<count($arImageList);$i++){
 		echo '<div class="image">';
-		echo	'<img src="'.$arImageList[$i].'"';
+		echo	'<img src="'.$arImageList[$i].'">';
 		echo '</div>';
 	}
 ?>
-		</div>
-	</div>
+
+		<div class="contents" id="profile">
+			<div class="title">
+				profile
+			</div><!-- title -->
+			<div class="substance">
+
+			</div>
+		</div><!-- profile -->
+		<div class="contents" id="subExhibitor">
+		</div><!-- profile -->
+
+	</div><!-- exhibitorInfo -->
+</div><!-- pageWrapper -->
 
 
 <?php
