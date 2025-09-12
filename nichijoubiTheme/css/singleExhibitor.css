@@ -58,6 +58,74 @@
 .exhibitorInfo > .imageArea > .image img{
 	width:100%;
 }
+.pageWrapper > .contentsWrapper{
+	margin:80px;
+}
+.pageWrapper > .contentsWrapper > .contents{
+
+}
+
+.pageWrapper > .contentsWrapper > .contents > .title{
+	font-size: 220%;
+    text-align: center;
+    position: relative;
+    margin-bottom: 100px;
+}
+.pageWrapper > .contentsWrapper > .contents > .title::after{
+	display: inline-block;
+    content: " ";
+    width: 1px;
+    height: 80px;
+    background: black;
+    position: absolute;
+    top: 100%;
+    left: 50%;
+}
+.pageWrapper > .contentsWrapper > .contents > .substance{
+
+}
+.pageWrapper > .contentsWrapper > .contents > .substance > .captionArea{
+    width: calc(100% - 770px);
+    display: inline-block;
+	padding:40px;
+    vertical-align: top;
+}
+.pageWrapper > .contentsWrapper > .contents > .substance > .image{
+	width: 750px;
+    display: inline-block;
+
+}
+.pageWrapper > .contentsWrapper > .contents > .substance > .image img{
+
+}
+#subExhibitor > .parts{
+    display: inline-block;
+    width: 30%;
+    margin: 10px;
+}
+#subExhibitor > .parts > .imageArea{
+
+}
+#subExhibitor > .parts > .imageArea img{
+	width:100%;
+	aspect-ratio: 1 / 1;
+	object-fit:cover;
+
+}
+#subExhibitor > .parts > .captionArea{
+
+}
+#subExhibitor > .parts > .captionArea > .parts{
+
+
+}
+#subExhibitor > .parts > .captionArea > .parts > .label{
+
+}
+#subExhibitor > .parts > .captionArea > .parts > .data{
+
+}
+
 /* スマホ縦画面用 */
 @media only screen and (max-width: 1024px) and (orientation:portrait){
 

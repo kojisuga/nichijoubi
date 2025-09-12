@@ -22,6 +22,8 @@ if ( have_posts() ) {
 		$concept  = get_field('concept');
 		$commitment = get_field('commitment');
 		$message  = get_field('message');
+		$profile = get_field('profile');
+
 		if( have_rows('imageList') ):
 			
 			$arImageList = array();
@@ -55,7 +57,6 @@ if ( have_posts() ) {
 	</div>
 
 
-</div><!-- pageWrapper -->
 
 	<div class="exhibitorInfo">
 		<div class="captionArea ">
@@ -88,19 +89,24 @@ if ( have_posts() ) {
 					<?php echo '<a href="'. $instagramUrl .'" target="_blank">'. $instagramAccount .'</a>';?>
 				</div>
 			</div>
+<?php if($concept){?>
 			<div class="caption fadeInMaskGra" id="concept">
 				<div class="title">concept</div>
 				<div class="text"><?php echo $concept; ?></div>
 			</div><!-- caption -->
+<?php } ?>			
+<?php if($message){?>
 			<div class="caption fadeInMaskGra" id="message">
 				<div class="title">message</div>
 				<div class="text"><?php echo $message; ?></div>
 			</div><!-- caption -->
+<?php } ?>			
+<?php if($commitment){?>
 			<div class="caption fadeInMaskGra" id="commitment">
 				<div class="title">commitment</div>
 				<div class="text"><?php echo $commitment; ?></div>
 			</div><!-- caption -->
-			
+<?php } ?>			
 
 		</div><!-- captionArea -->
 		<div class="imageArea">
@@ -111,19 +117,92 @@ if ( have_posts() ) {
 		echo '</div>';
 	}
 ?>
-
+		</div><!-- imageArea -->
+	</div><!-- exhibitorInfo -->
+	<div class="contentsWrapper">
 		<div class="contents" id="profile">
 			<div class="title">
 				profile
 			</div><!-- title -->
 			<div class="substance">
-
-			</div>
+				<div class="image">
+	<?php 
+		if( have_rows('profileImageList') ):
+			
+			$arProfileImageList = array();
+			
+			// ループ開始
+			while( have_rows('profileImageList') ): the_row();
+				
+				// サブフィールド'image'から画像フィールドの値を取得
+				// 返り値が「画像URL」形式の場合
+				$image_url = get_sub_field('image');
+				
+				$arProfileImageList[] = $image_url;
+				
+	
+			endwhile;
+		
+			echo '<img src="' .$arProfileImageList[0]. '">';
+	
+		endif;
+	?>
+	
+					<img src="">
+				</div><!-- image -->
+				<div class="captionArea">
+					<?php echo $profile; ?>
+				</div><!-- captionArea -->
+	
+			</div><!-- substance -->
 		</div><!-- profile -->
-		<div class="contents" id="subExhibitor">
-		</div><!-- profile -->
 
-	</div><!-- exhibitorInfo -->
+
+	<?php 
+		if( have_rows('subExhibitor') ):
+echo		'<div class="contents" id="subExhibitor">';
+echo			'<div class="title">support exhibitor</div>';
+			
+			// ループ開始
+			while( have_rows('subExhibitor') ): the_row();
+				echo '<div class="parts">';
+				// サブフィールド'image'から画像フィールドの値を取得
+				// 返り値が「画像URL」形式の場合
+				$exhibitorName = get_sub_field('exhibitorName');
+				$brandName = get_sub_field('brandName');
+				$genre = get_sub_field('genre');
+				$url = get_sub_field('url');
+				$concept = get_sub_field('concept');
+				$instagram = get_sub_field('instagram');
+				
+				$subExhibitorList = array();
+				if (have_rows('imageList')) :
+					echo '<div class="imageArea">';
+					// 「imageList」の行をループ
+					while (have_rows('imageList')) : the_row();
+					
+						// 内側のサブフィールド「image」から画像URLを取得
+						// ACFの「返り値」が「画像URL」の場合
+						$image_url = get_sub_field('image');
+
+						$subExhibitorList[] = $image_url;
+
+					endwhile;
+						echo '<img src="' .$subExhibitorList[0]. '">';
+						echo '</div>';
+				endif;
+				echo '</div>';
+			endwhile;
+		endif;
+
+
+		echo '</div><!-- subExhibitor -->';
+
+	?>
+
+	</div><!-- contentsWrapper -->
+
+
 </div><!-- pageWrapper -->
 
 
