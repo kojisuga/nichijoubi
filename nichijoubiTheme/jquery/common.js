@@ -4,18 +4,18 @@
 $(function(){
 
 	$(window).on('load',function(){
-		FadeInFunc();
+		fadeInFunc();
 	});
 	$(window).resize(function (){
-		FadeInFunc();
+		fadeInFunc();
 	});
 	$(document).ready(function(){
-		FadeInFunc();
+		fadeInFunc();
 	});
 });
 
-function FadeInFunc(){
-	$(".FadeInLeft").each(function(){
+function fadeInFunc(){
+	$(".fadeInLeft").each(function(){
 		if ( $(this).offset().top > 0 ) {
 			var offset = $(this).offset().top;
 			var scrolltop = $(window).scrollTop();
@@ -29,7 +29,7 @@ function FadeInFunc(){
 		}
 	});
 
-	$(".FadeInRight").each(function(){
+	$(".fadeInRight").each(function(){
 		if ( $(this).offset().top > 0 ) {
 			var offset = $(this).offset().top;
 			var scrolltop = $(window).scrollTop();
@@ -43,7 +43,7 @@ function FadeInFunc(){
 		}
 	});
 	
-	$(".FadeInUp").each(function(){
+	$(".fadeInUp").each(function(){
 		if ( $(this).offset().top > 0 ) {
 			var offset = $(this).offset().top;
 			var scrolltop = $(window).scrollTop();
@@ -56,7 +56,7 @@ function FadeInFunc(){
 			}
 		}
 	});
-	$(".FadeIn").each(function(){
+	$(".fadeIn").each(function(){
 		if ( $(this).offset().top >= 0 ) {
 			var offset = $(this).offset().top;
 			var scrolltop = $(window).scrollTop();
@@ -67,7 +67,7 @@ function FadeInFunc(){
 			}
 		}
 	});
-	$(".FadeInSlideMaskRight").each(function(){
+	$(".fadeInSlideMaskRight").each(function(){
 		if ( $(this).offset().top > 0 ) {
 			var offset = $(this).offset().top;
 			var scrolltop = $(window).scrollTop();
@@ -78,7 +78,7 @@ function FadeInFunc(){
 			}
 		}
 	});
-	$(".FadeInSlideMaskLeft").each(function(){
+	$(".fadeInSlideMaskLeft").each(function(){
 		if ( $(this).offset().top > 0 ) {
 			var offset = $(this).offset().top;
 			var scrolltop = $(window).scrollTop();
@@ -107,6 +107,6 @@ function FadeInFunc(){
 // -------------------------
 $(function(){
 	$(window).scroll(function(){
-		FadeInFunc();
+		fadeInFunc();
 	});
 });

@@ -53,57 +53,59 @@ if ( have_posts() ) {
 
 <div class="pageWrapper">
 	<div class="topImage">
-		<img src="<?php echo $arImageList[0]; ?>">
+		<img class="fadeIn" src="<?php echo $arImageList[0]; ?>">
 	</div>
 
 
 
 	<div class="exhibitorInfo">
 		<div class="captionArea ">
-			<div class="parts fadeInMaskGra">
-				<div class="data">
-					<?php echo $exhibitor_name.$brand_name." — ".$genre; ?>
+			<div class="partsWrapper ">
+				<div class="parts fadeIn">
+					<div class="data">
+						<?php echo $exhibitor_name.$brand_name." — ".$genre; ?>
+					</div>
 				</div>
-			</div>
-			<div class="parts fadeInMaskGra">
-				<div class="label">
-					<img src="<?php echo get_template_directory_uri(); ?>/image/common/icon/iconMail.png">
+				<div class="parts fadeIn">
+					<div class="label">
+						<img src="<?php echo get_template_directory_uri(); ?>/image/common/icon/iconWeb.png">
+					</div>
+					<div class="data">
+						<?php echo '<a href="'. $url .'" target="_blank">'. $url .'</a>'; ?>
+					</div>
 				</div>
-				<div class="data">
-					<?php echo $mailAdress; ?>
+				<div class="parts fadeIn">
+					<div class="label">
+						<img src="<?php echo get_template_directory_uri(); ?>/image/common/icon/iconSns.png">
+					</div>
+					<div class="data">
+						<?php echo '<a href="'. $instagramUrl .'" target="_blank"> @'. $instagramAccount .'</a>';?>
+					</div>
 				</div>
-			</div>
-			<div class="parts fadeInMaskGra">
-				<div class="label">
-					<img src="<?php echo get_template_directory_uri(); ?>/image/common/icon/iconWeb.png">
+				<div class="parts fadeIn">
+					<div class="label">
+						<img src="<?php echo get_template_directory_uri(); ?>/image/common/icon/iconMail.png">
+					</div>
+					<div class="data">
+						<?php echo $mailAdress; ?>
+					</div>
 				</div>
-				<div class="data">
-					<?php echo '<a href="'. $url .'" target="_blank">'. $url .'</a>'; ?>
-				</div>
-			</div>
-			<div class="parts fadeInMaskGra">
-				<div class="label">
-					<img src="<?php echo get_template_directory_uri(); ?>/image/common/icon/iconSns.png">
-				</div>
-				<div class="data">
-					<?php echo '<a href="'. $instagramUrl .'" target="_blank">'. $instagramAccount .'</a>';?>
-				</div>
-			</div>
+			</div><!-- partsWrapper -->
 <?php if($concept){?>
-			<div class="caption fadeInMaskGra" id="concept">
-				<div class="title">concept</div>
+			<div class="caption fadeIn" id="concept">
+				<div class="title">創作理念</div>
 				<div class="text"><?php echo $concept; ?></div>
 			</div><!-- caption -->
 <?php } ?>			
 <?php if($message){?>
-			<div class="caption fadeInMaskGra" id="message">
-				<div class="title">message</div>
+			<div class="caption fadeIn" id="message">
+				<div class="title">想對購買我作品的人說的話 </div>
 				<div class="text"><?php echo $message; ?></div>
 			</div><!-- caption -->
 <?php } ?>			
 <?php if($commitment){?>
-			<div class="caption fadeInMaskGra" id="commitment">
-				<div class="title">commitment</div>
+			<div class="caption fadeIn" id="commitment">
+				<div class="title">對「產品」的用心與講究</div>
 				<div class="text"><?php echo $commitment; ?></div>
 			</div><!-- caption -->
 <?php } ?>			
@@ -112,7 +114,7 @@ if ( have_posts() ) {
 		<div class="imageArea">
 <?php
 	for($i = 1;$i<count($arImageList);$i++){
-		echo '<div class="image">';
+		echo '<div class="image fadeIn">';
 		echo	'<img src="'.$arImageList[$i].'">';
 		echo '</div>';
 	}
@@ -143,7 +145,7 @@ if ( have_posts() ) {
 	
 			endwhile;
 		
-			echo '<img src="' .$arProfileImageList[0]. '">';
+			echo '<img  class="fadeIn" src="' .$arProfileImageList[0]. '">';
 	
 		endif;
 	?>
@@ -165,16 +167,23 @@ echo			'<div class="title">support exhibitor</div>';
 			
 			// ループ開始
 			while( have_rows('subExhibitor') ): the_row();
-				echo '<div class="parts">';
+				echo '<div class="parts fadeIn">';
 				// サブフィールド'image'から画像フィールドの値を取得
 				// 返り値が「画像URL」形式の場合
 				$exhibitorName = get_sub_field('exhibitorName');
 				$brandName = get_sub_field('brandName');
+				if($brandName){
+					if($exhibitorName){
+						$brandName = " (" . $brandName. ")";
+					}
+				}
 				$genre = get_sub_field('genre');
 				$url = get_sub_field('url');
 				$concept = get_sub_field('concept');
-				$instagram = get_sub_field('instagram');
-				
+				$instagramAccount = get_sub_field('instagramAccount');
+				$instagramUrl = get_sub_field('instagramUrl');
+				$mailAdress =  get_sub_field('mail');
+
 				$subExhibitorList = array();
 				if (have_rows('imageList')) :
 					echo '<div class="imageArea">';
@@ -191,7 +200,50 @@ echo			'<div class="title">support exhibitor</div>';
 						echo '<img src="' .$subExhibitorList[0]. '">';
 						echo '</div>';
 				endif;
-				echo '</div>';
+?>
+					<div class="exhibitorInfo">
+						<div class="captionArea">
+		
+							<div class="parts exhibitorName">
+								<div class="data">
+									<?php echo $exhibitorName.$brandName." — ".$genre; ?>
+								</div>
+							</div>
+							<div class="parts ">
+								<div class="label">
+									<img src="<?php echo get_template_directory_uri(); ?>/image/common/icon/iconWeb.png">
+								</div>
+								<div class="data">
+									<?php echo '<a href="'. $url .'" target="_blank">'. $url .'</a>'; ?>
+								</div>
+							</div>
+							<div class="parts ">
+								<div class="label">
+									<img src="<?php echo get_template_directory_uri(); ?>/image/common/icon/iconSns.png">
+								</div>
+								<div class="data">
+									<?php echo '<a href="'. $instagramUrl .'" target="_blank"> @'. $instagramAccount .'</a>';?>
+								</div>
+							</div>
+							<div class="parts ">
+								<div class="label">
+									<img src="<?php echo get_template_directory_uri(); ?>/image/common/icon/iconMail.png">
+								</div>
+								<div class="data">
+									<?php echo $mailAdress; ?>
+								</div>
+							</div>
+							<div class="parts concept">
+								<?php echo $concept?>
+							</div>
+
+
+		
+
+						</div><!-- captionArea -->
+					</div><!-- exhibitorInfo -->
+				</div><!-- parts -->
+<?php
 			endwhile;
 		endif;
 

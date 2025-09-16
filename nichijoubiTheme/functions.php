@@ -382,6 +382,7 @@ function genTopThumnail() {
 
 	$width = $_POST['width'];
 	$height = $_POST['height'];
+	$keyImageWidth = $_POST['keyImageWidth'];
 	
 	// 投稿データの取得
 	$args = array(
@@ -420,9 +421,9 @@ function genTopThumnail() {
 	
 
 	// line数を決定
-	$lineNumber = intval($width / 300)+1;
+	$lineNumber = intval($width / $keyImageWidth)+1;
 	// block数を決定
-	$blockNumber =  intval($height / (300 * 0.6666) )+1;
+	$blockNumber =  intval($height / ($keyImageWidth * 0.6666) )+1;
 
 	$outputCode .= '<div class="thumbnailWrapper">';
 	for($i = 0; $i < $lineNumber; $i++){
@@ -431,10 +432,12 @@ function genTopThumnail() {
 		for($j = 0; $j < $blockNumber; $j++){
 
 			$blockSerialNumber = getRandomNumber4Block($blockNumber*$lineNumber)+1;
-			$outputCode .= '<div class="block" data-blockSerialNumber="'.$blockSerialNumber.'">';
 			$randumIndex = getRandomNumber4Post(count($arPostID));
 			
 			$post_id = $arPostID[$randumIndex]; // 例: 投稿IDが123の場合
+			$post_url = get_permalink($post_id);
+			$outputCode .= '<a class="aLink" href="'.$post_url.'">';
+			$outputCode .= '<div class="block" data-blockSerialNumber="'.$blockSerialNumber.'" data-viewImageNumber="1" >';
 
 			// テキストフィールドの値を取得
 			$exhibitor_name = get_field('exhibitorName', $post_id);
@@ -463,7 +466,9 @@ function genTopThumnail() {
 				
 			}
 			
-			$outputCode .= '</div>';
+			$outputCode .= '</div><!-- block -->';
+			$outputCode .= '</a>';
+
 		}
 
 		$outputCode .= '</div>';

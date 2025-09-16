@@ -162,7 +162,7 @@ body{
 	-ms-transform    : translateY(0px);
 	transform        : translateY(0px);	
 }
-.FadeIn{
+.fadeIn{
 	opacity:0.0;
 
 	/* animation */	
@@ -172,7 +172,7 @@ body{
     -o-transition: all 2s;
     transition: all 2s;
 }
-.FadeInUp{
+.fadeInUp{
 	opacity:0.0;
 
 	/* animation */	
@@ -191,7 +191,7 @@ body{
 
 
 }
-.FadeInLeft{
+.fadeInLeft{
 	opacity:0.0;
 
 	/* animation */	
@@ -210,7 +210,7 @@ body{
 	
 
 }
-.FadeInRight{
+.fadeInRight{
 	opacity:0.0;
 
 	/* animation */	
@@ -227,7 +227,7 @@ body{
 	-ms-transform    : translateX(-50px);
 	transform        : translateX(-50px);
 }
-.FadeInSlideMaskText{
+.fadeInSlideMaskText{
 	
 	/* Layout */
 	width:0%;

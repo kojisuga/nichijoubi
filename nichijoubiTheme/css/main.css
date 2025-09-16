@@ -1,5 +1,5 @@
 :root {
-	--keyImageWidth:300px;
+	--keyImageWidth:calc(100vw / 6);
 }
 
 html{
@@ -28,12 +28,12 @@ html{
  
     display: inline-block;
 	width:var(--keyImageWidth);
-	padding: 0 10px;
+	padding: 0 20px;
 }
-.pageWrapper > .contentsWrapper > #top > .thumbnailWrapper > .linePats > .block{
+.pageWrapper > .contentsWrapper > #top > .thumbnailWrapper > .linePats > .aLink > .block{
 	width:100%;
 	height:calc(var(--keyImageWidth) * 0.6666);
-	margin-bottom: 13px;
+	margin-bottom: 40px;
     padding-top: 10px;
     position: relative;
 	opacity: 0;
@@ -50,13 +50,13 @@ html{
     opacity: 1 !important;
 }
 
-.pageWrapper > .contentsWrapper > #top > .thumbnailWrapper > .linePats > .block > .image{
+.pageWrapper > .contentsWrapper > #top > .thumbnailWrapper > .linePats > .aLink > .block > .image{
 	width:100%;
 	height:100%;
     position: absolute;
 }
 
-.pageWrapper > .contentsWrapper > #top > .thumbnailWrapper > .linePats > .block > .image img{
+.pageWrapper > .contentsWrapper > #top > .thumbnailWrapper > .linePats > .aLink > .block > .image img{
 	width:100%;
 	height:100%;
     object-fit: cover;
@@ -74,8 +74,9 @@ html{
 
 #about{
 	height:100vh;
-    padding: 80px;
+    padding: 120px;
 	padding-right:200px;
+    margin-bottom: 80px;
 }
 #about > .logo{
 	text-align: right;
@@ -106,11 +107,25 @@ html{
     position: absolute;
     right: 10px;
     height: calc(100vh - 400px);
-    padding-top: 50px;
+    padding-top: 100px;
 }
 #about > .message >  .horizontal{
 
 }
+#about > .message > #exhibitorInfo{
+	
+}
+#about > .message > #exhibitorInfo > .instroduction{
+	
+}
+#about > .message > #exhibitorInfo > .instroduction > .teamName{
+	font-size:120%;
+	margin-bottom:5px;
+}
+#about > .message > #exhibitorInfo > .instroduction > .concept{
+	margin-bottom:15px;
+}
+
 #exhibitorInfo{
 	
 } 
@@ -160,6 +175,7 @@ html{
 }
 .contents > .title{
     font-size: 200%;
+    margin-bottom: 30px;
 
 }
 .contents > .title > .vLine{
@@ -174,10 +190,12 @@ html{
 	padding-top: 100px;
     display: inline-block;
     text-align: left;
+    margin-bottom: 15px;
 }
 #exhibition > .captionArea> .logo{
 	display:inline-block;
 	vertical-align:middle;
+    margin-right: 30px;
 }
 #exhibition > .captionArea> .logo img{
     width: 200px;
@@ -185,8 +203,6 @@ html{
 #exhibition > .captionArea > .caption{
 	display:inline-block;
 	vertical-align:middle;
-}
-#exhibition > .captionArea > .caption{
 	margin-bottom:5px;
 }
 #exhibition > .captionArea > .caption > .text{
@@ -229,11 +245,11 @@ display: inline-block;
 #contact > .formArea > .contactForm > .caption{
 }
 #contact > .formArea > .contactForm > .parts{
-	margin-bottom:10px;
+	margin-bottom:25px;
 
 }
 #contact > .formArea > .contactForm > .parts > .label{
-
+	margin-bottom:10px;
 }
 #contact > .formArea > .contactForm > .parts > .data{
 

@@ -11,9 +11,22 @@
 jQuery(document).ready(function($) {
     // 画面サイズを取得
 
-	console.log("ready");
     const viewportHeight = window.innerHeight;
     const viewportWidth = window.innerWidth;
+		
+	const dummyDiv = $('<div>').css({
+		'position': 'absolute',
+		'visibility': 'hidden', // ユーザーに見えないようにする
+		'width': 'var(--keyImageWidth)' // CSS変数を適用
+	}).appendTo('body'); // bodyに追加して幅を計算させる
+	
+	// ダミー要素の幅（ピクセル値）を取得
+	const widthInPixels = dummyDiv.width();
+	
+	// ダミー要素を削除
+	dummyDiv.remove();
+	
+	console.log(`--keyImageWidthの計算結果（px）：${widthInPixels}`);
 
     // AJAXリクエストでPHPに値を送信
 	$.ajax({
@@ -23,19 +36,25 @@ jQuery(document).ready(function($) {
 			'action' : 'genTopThumnail',
 			'width' : viewportWidth,
 			'height' : viewportHeight,
+			'keyImageWidth': widthInPixels,
 		},
 		success: function( response ){
 			$('#top').html(response);
 			viewThumbnail();
 			
 		}
+	});	
+	// ↓↓↓ 修正されたイベントハンドラ ↓↓↓
+	$('#top').on('click', '.block', function() {
+		console.log("click");
+		console.log($(this).attr('data-postURL'));
 	});
+
 });
 
 function viewThumbnail(){
 
 	const readyTime = new Date().getTime();
-	console.log(`document.ready: ${readyTime} ms`);
 	let loadBlocks = 0;
 
 $('.block').each(function() {
@@ -46,6 +65,44 @@ $('.block').each(function() {
 
 	// スライドショー開始関数（元のコードのまま）
 	function startSlideshow() {
+
+		setInterval(function() {
+
+			// tagetのブロックの画像数を取得
+			totalBlockNum = $('.block').length;
+			
+			// random数を取得
+			slideTargetBlockNum = Math.floor(Math.random() * (totalBlockNum - 0 + 1)) + 0;
+//			console.log(slideTargetBlockNum);
+
+			slideTargetBlock = $(".thumbnailWrapper").find('.block[data-blockserialnumber="'+slideTargetBlockNum+'"]');
+//			console.log("slideTargetBlock:"+slideTargetBlock);
+			slideTargetBlockImgCoount = slideTargetBlock.find('img').length;
+			
+			// tagetのブロックの現在の表示スライドを取得
+			currentViewImageNumber = slideTargetBlock.attr('data-viewImageNumber');
+			// tagetのブロックの次の表示スライドを取得
+			if(slideTargetBlockImgCoount >= parseInt(currentViewImageNumber, 10)+1){
+				nextViewImageNumber = parseInt(currentViewImageNumber, 10) + 1; // 結果: 21
+			}
+			else{
+				nextViewImageNumber = 1;
+			}
+			slideTargetBlock.attr('data-viewImageNumber', nextViewImageNumber);
+			
+//			console.log("blockNumber:"+slideTargetBlockNum+"の");
+//			console.log("currentViewImageNumber:"+currentViewImageNumber);
+//			console.log("nextViewImageNumber:"+nextViewImageNumber );
+
+//			console.log(slideTargetBlock.find('*'));
+			
+			slideTargetBlock.find('img[data-slidenumber="' + currentViewImageNumber + '"]').css("opacity","0");
+
+			slideTargetBlock.find('img[data-slideNumber="' + nextViewImageNumber + '"]').css("opacity","1");
+			
+		}, 1000);
+
+/*
 		const $allImages = $block.find('.thumbnailImg');
 		const totalSlides = $allImages.length;
 		let currentSlide = 0;
@@ -54,24 +111,27 @@ $('.block').each(function() {
 		setInterval(function() {
 			$allImages.eq(currentSlide).animate({
 				opacity: 0
-			}, 1000);
+			}, 1500);
 			currentSlide = (currentSlide + 1) % totalSlides;
 			$allImages.eq(currentSlide).animate({
 				opacity: 1
-			}, 1000);
-		}, 7500);
+			}, 1500);
+		}, 10000);
+*/
 	}
 
 	// 初回読み込みとキャッシュからの読み込みを処理する関数
 	function handleImageLoad() {
-		console.log("execute handleImageLoad");
+//		console.log("execute handleImageLoad");
+
+		const totalBlockCount = $('.block').length;
 		loadedImages++;
 		if (loadedImages === totalImages) {
 			loadBlocks++;
-			console.log(loadBlocks + "番目のブロック読み込み完了");
+//			console.log(loadBlocks + "番目のブロック読み込み完了");
 			const slideshowStartTime = new Date().getTime();
 			const timeDifference = slideshowStartTime - readyTime;
-			console.log(`\n時間差分: ${timeDifference} ms`);
+//			console.log(`\n時間差分: ${timeDifference} ms`);
 			Idealtime = 300 * loadBlocks;
 			Gqptime = Idealtime - timeDifference;
 			if (Gqptime <= 0) {
@@ -80,47 +140,67 @@ $('.block').each(function() {
 				delayTime = Gqptime;
 			}
 			$block.css("opacity", "1");
-			setTimeout(function() {
-				startSlideshow(); // スライドショーを開始
-			}, delayTime);
+
+			if(loadBlocks >= (totalBlockCount*2) ){
+				startSlideshow();
+			}
+			else{
+			}
+
+
 		}
 	}
+
 	function randomLoad(){
-		console.log("execute randomLoad");
+//		console.log("execute randomLoad");
 		loadedImages++;
 		loadBlocks++;
+		const totalBlockCount = $('.block').length;
+
+//		console.log("load serialNumber : "+loadBlocks);
 		targetBlock = $(".thumbnailWrapper").find('.block[data-blockserialnumber="'+loadBlocks+'"]');
-
-		console.log(targetBlock);
-
+//		console.log(targetBlock);
 		const slideshowStartTime = new Date().getTime();
 		const timeDifference = slideshowStartTime - readyTime;
-		Idealtime = 300 * loadBlocks;
+		Idealtime = 125 * loadBlocks;
 		Gqptime = Idealtime - timeDifference;
 		if (Gqptime <= 0) {
 			delayTime = 0;
 		} else {
 			delayTime = Gqptime;
 		}
-		targetBlock.css("opacity", "1");
+
+		IdealTimeSlide = 500 * loadBlocks;
+		GqptimeSlide = IdealTimeSlide - timeDifference;
+		if (GqptimeSlide <= 0) {
+			delayTimeSlide = 0;
+		} else {
+			delayTimeSlide = GqptimeSlide;
+		}
+
 		setTimeout(function(block) {
 			
-			console.log(delayTime);
-			startSlideshow(); // スライドショーを開始
+			block.css("opacity", "1");
+//			console.log(delayTime);
 		}, delayTime, targetBlock); // ★ setTimeoutの第3引数でtargetBlockを渡す
+		
+		if(loadBlocks >= (totalBlockCount*2) ){
+			startSlideshow();
+		}
+		else{
+		}
 	}
-
 
 	// 画像の読み込み完了をチェック
 	// キャッシュからの読み込みを検知
 	$images.each(function() {
 		// `complete`プロパティを使って、画像がすでに読み込まれているかチェック
 		if (this.complete) {
-			console.log("キャッシュから読み込み: " + $(this).attr('src'));
+//			console.log("キャッシュから読み込み: " + $(this).attr('src'));
 			// キャッシュからの読み込み時にも同じ処理を実行
 			randomLoad(); 
 		} else {
-			console.log("サーバーから新規読み込み: " + $(this).attr('src'));
+//			console.log("サーバーから新規読み込み: " + $(this).attr('src'));
 			$images.on('load', handleImageLoad);
 
 		}
@@ -145,13 +225,13 @@ $('.block').each(function() {
 	
 		</div><!-- contents -->
 		<div class="contents" id="about">
-			<div class="logo">
+			<div class="logo fadeIn">
 				<div class="image">
 					<img src="<?php echo get_template_directory_uri(); ?>/image/common/nichijoubi_logo_bk.png">
 				</div>
 				<div class="subTitle"><div class="vertical">japanese handcraft</div></div>
 			</div><!-- logo -->
-			<div class="message">
+			<div class="message fadeIn">
 				<div class="vertical twMode">
 					我們的日常生活中，衣、食、住的每一件「物品」，都是與我們一同度過歲月的夥伴。<br>
 					<br>
@@ -204,9 +284,11 @@ $('.block').each(function() {
 			$brandName = get_field('brandName');
 			$exhibitorName = get_field('exhibitorName');
 			$genre = get_field('genre');
+			
+			$post_url = get_permalink();
 
 ?>
-					<a href="">
+					<a href="<?php echo $post_url; ?>">
 					<div class="parts">
 						<div class="genre">
 							<?php echo $genre; ?>
@@ -223,7 +305,7 @@ if ( have_rows('subExhibitor') ) :
 		echo '<div class=" subExhibitor">';
  // 各サブ出展者のデータをループで処理
     while ( have_rows('subExhibitor') ) : the_row();
-        echo '<div class="parts">';
+		echo '<div class="parts fadeIn">';
         // 「subExhibitor」のサブフィールドを取得
         $subExhibitorName = get_sub_field('exhibitorName');
         $subBrandName = get_sub_field('brandName');
@@ -232,12 +314,13 @@ if ( have_rows('subExhibitor') ) :
         $instagram = get_sub_field('instagram');
         $concept = get_sub_field('concept');
         
+
         // 取得したサブ出展者情報を表示
 		echo '<div class="genre">'. $subGenre . '</div>';
 if ( $subExhibitorName ){
 		echo '<div class="exhibitorName">'. $subExhibitorName. '</div>';
 }
-		echo '<div class="brandName">'. $subBrandName . '</div>';
+		echo '<div class="brandName"> ( '. $subBrandName . ' ) </div>';
 
             
 		if ( have_rows('imageList') ) :
@@ -296,7 +379,7 @@ endif; // End of subExhibitor check
 				</div>
 			</div><!-- caption -->
 			<div class="mapImage">
-				<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3614.706667849373!2d121.5606524!3d25.0440269!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3442abbf5ad5ee49%3A0x154913cae7209f78!2z5YyX5ZCR6KO96I-45bel5bug!5e0!3m2!1sja!2sjp!4v1757573801335!5m2!1sja!2sjp" width="100%" height="600" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+				<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3614.706667849373!2d121.5606524!3d25.0440269!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3442abbf5ad5ee49%3A0x154913cae7209f78!2z5YyX5ZCR6KO96I-45bel5bug!5e0!3m2!1sja!2sjp!4v1757573801335!5m2!1sja!2sjp" width="100%" height="800" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
 			</div>
 		</div><!-- contents exhibition -->
 		<div class="contents" id="contact">
