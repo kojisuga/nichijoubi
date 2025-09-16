@@ -1,0 +1,14 @@
+.footerWrapper{	
+	text-align:center;
+	padding: 30px;
+}
+
+@media screen and (max-width: 768px) {
+	input.text {
+		width: 100%;
+	}
+	textarea {
+		width: 100%;
+	}
+
+}

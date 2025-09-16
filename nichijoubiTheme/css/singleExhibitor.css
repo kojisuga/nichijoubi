@@ -1,9 +1,9 @@
 
 .pageWrapper{
-
+	padding-right: 180px;
 }
 .pageWrapper > .topImage{
-	width: calc(100vw - 240px);
+	width: calc(100vw - 273px);
     height: calc(100vh - 160px);
     margin: 80px;
 }
@@ -25,7 +25,7 @@
 	padding-right:50px;
 }
 .exhibitorInfo > .captionArea > .partsWrapper{
-    margin-bottom: 30px;
+    margin-bottom: 70px;
 }
 .exhibitorInfo > .captionArea > .partsWrapper > .parts{
 	margin-bottom:10px;
@@ -66,10 +66,9 @@
 }
 .pageWrapper > .contentsWrapper{
 	margin:80px;
-    padding-right: 160px;
+    padding-right: 0;
 }
 .pageWrapper > .contentsWrapper > .contents{
-
 }
 
 .pageWrapper > .contentsWrapper > .contents > .title{
@@ -108,10 +107,15 @@
 #profile{
 	margin-bottom:100px;
 }
+#subExhibitor{
+	text-align:center;
+}
+
 #subExhibitor > .parts{
     display: inline-block;
-    width: calc(33% - 59px);
+    width: calc(33% - 65px);
     margin: 30px;
+    text-align: left;
 }
 #subExhibitor > .parts > .imageArea{
 
@@ -128,6 +132,7 @@
 
 #subExhibitor > .parts > .exhibitorInfo > .captionArea{
 	width:100%;
+    padding-right: 0;
 }
 #subExhibitor > .parts > .exhibitorInfo > .captionArea > .parts{
 	margin-bottom:10px;
@@ -141,6 +146,7 @@
 #subExhibitor > .parts > .exhibitorInfo > .captionArea > .parts > .data{
 	display:inline-block;
 	vertical-align:middle;
+    width: calc(100% - 50px);
 }
 #subExhibitor > .parts > .exhibitorInfo > .captionArea > .concept{
 	margin-bottom:30px;

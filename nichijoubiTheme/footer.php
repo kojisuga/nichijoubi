@@ -2,7 +2,7 @@
 <!--Css------------------------------------------------------------------------------------------------------------------>
 <script>function Css_________________________________________________________________________________________(){}</script>
 <!--〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓-->
-<link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/css/Footer.css?<?php echo file_date(get_template_directory() . '/css/Footer.css'); ?>" type="text/css" />
+<link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/css/footer.css?<?php echo file_date(get_template_directory() . '/css/footer.css'); ?>" type="text/css" />
 
 <!--〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓-->
 <!--Jquery--------------------------------------------------------------------------------------------------------------->
@@ -13,10 +13,10 @@
 <!--Html----------------------------------------------------------------------------------------------------------------->
 <script>function Html________________________________________________________________________________________(){}</script>
 <!--〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓-->
-<div class="FooterWrapper" id="commonf">
+<div class="footerWrapper" id="commonf">
 	<div class="info">
 		<div class="copyright">
-			All rights reserved, <?php echo date('Y'); ?> copyright(c) kichi.
+			All rights reserved, <?php echo date('Y'); ?> copyright(c) nichijoubi.
 		</div>
 	</div><!-- info -->
 </div>

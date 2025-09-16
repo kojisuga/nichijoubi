@@ -1,5 +1,5 @@
 :root {
-	--keyImageWidth:calc(100vw / 6);
+	--keyImageWidth:calc((100vw - 180px) / 6);
 }
 
 html{
@@ -14,7 +14,7 @@ html{
 .pageWrapper > .contentsWrapper > .contents{
 }
 .pageWrapper > .contentsWrapper > #top{
-	width:100vw;
+	width:calc(100vw - 180px);
 	height:100vh;
 	overflow:hidden;
 }
@@ -141,6 +141,17 @@ html{
 
 } 
 .parts > .brandName{
+    display: inline-block;	
+} 
+.parts > .aLink > .genre{
+    display: inline-block;
+    margin-right: 20px;	
+} 
+.parts > .aLink > .exhibitorName{
+    display: inline-block;
+
+} 
+.parts > .aLink > .brandName{
     display: inline-block;	
 } 
 .parts > .subExhibitor{

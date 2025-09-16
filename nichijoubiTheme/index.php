@@ -266,15 +266,15 @@ $('.block').each(function() {
 
 <?php
 
-	// 投稿データの取得
 	$args = array(
-		'post_type'      => 'post', // 投稿タイプを指定
-		'category_name'  => 'exhibitor', // カテゴリのスラッグ
-		'posts_per_page' => -1, // 全ての投稿を取得
+		'post_type'      => 'post',
+		'category_name'  => 'exhibitor',
+		'posts_per_page' => -1,
+		'post__not_in'   => array(256), // 投稿ID 256 を除外
 	);
-	// 新しいWP_Queryインスタンスを作成
-	$exhibitor_posts = new WP_Query($args);
 	
+	$exhibitor_posts = new WP_Query($args);
+
 	// ループ開始
 	if ($exhibitor_posts->have_posts()) {
 		while ($exhibitor_posts->have_posts()) {
@@ -286,10 +286,21 @@ $('.block').each(function() {
 			$genre = get_field('genre');
 			
 			$post_url = get_permalink();
+			$is_virtual_author = has_tag('virtualauthor');
+		
+
 
 ?>
+<?php  if ($is_virtual_author) {
+}
+else{?>
 					<a href="<?php echo $post_url; ?>">
+<?php } ?>
 					<div class="parts">
+<?php  if ($is_virtual_author) { ?>
+					<a class="aLink" href="<?php echo $post_url; ?>">
+<?php } ?>
+
 						<div class="genre">
 							<?php echo $genre; ?>
 						</div>
@@ -299,7 +310,9 @@ $('.block').each(function() {
 						<div class="brandName">
 							<?php echo $brandName; ?>
 						</div>
-
+<?php  if ($is_virtual_author) {
+						echo "</a>";
+}?>
 <?php
 if ( have_rows('subExhibitor') ) :
 		echo '<div class=" subExhibitor">';
@@ -314,7 +327,12 @@ if ( have_rows('subExhibitor') ) :
         $instagram = get_sub_field('instagram');
         $concept = get_sub_field('concept');
         
+		$subPostId = get_sub_field('post_id');
+		$post_url = get_permalink( $subPostId );
 
+ if ($is_virtual_author) {
+		echo '<a class="aLink" href="'.$post_url.'">';
+}
         // 取得したサブ出展者情報を表示
 		echo '<div class="genre">'. $subGenre . '</div>';
 if ( $subExhibitorName ){
@@ -331,7 +349,11 @@ if ( $subExhibitorName ){
 				
 			endwhile;
 		endif; // End of imageList check
-		
+
+ if ($is_virtual_author) {
+		echo '</a>';
+}
+
 		echo '</div><!-- parts -->';
     endwhile; // End of subExhibitor loop
 	echo '</div><!-- subExhibitor -->'	;

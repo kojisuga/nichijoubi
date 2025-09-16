@@ -421,9 +421,9 @@ function genTopThumnail() {
 	
 
 	// line数を決定
-	$lineNumber = intval($width / $keyImageWidth)+1;
+	$lineNumber = intval($width / $keyImageWidth);
 	// block数を決定
-	$blockNumber =  intval($height / ($keyImageWidth * 0.6666) )+1;
+	$blockNumber =  intval($height / ($keyImageWidth * 0.6666) );
 
 	$outputCode .= '<div class="thumbnailWrapper">';
 	for($i = 0; $i < $lineNumber; $i++){

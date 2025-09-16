@@ -79,7 +79,7 @@ if ( have_posts() ) {
 						<img src="<?php echo get_template_directory_uri(); ?>/image/common/icon/iconSns.png">
 					</div>
 					<div class="data">
-						<?php echo '<a href="'. $instagramUrl .'" target="_blank"> @'. $instagramAccount .'</a>';?>
+						<?php echo '<a href="'. $instagramUrl .'" target="_blank"> '. $instagramAccount .'</a>';?>
 					</div>
 				</div>
 				<div class="parts fadeIn">
@@ -150,6 +150,24 @@ if ( have_posts() ) {
 		endif;
 	?>
 	
+	<?php 
+		if( have_rows('studioImageList') ):
+						
+			// ループ開始
+			while( have_rows('studioImageList') ): the_row();
+				
+				// サブフィールド'image'から画像フィールドの値を取得
+				// 返り値が「画像URL」形式の場合
+				$image_url = get_sub_field('image');
+				
+				echo '<img  class="fadeIn" src="' .$image_url. '">';
+	
+			endwhile;
+		
+	
+		endif;
+	?>
+
 					<img src="">
 				</div><!-- image -->
 				<div class="captionArea">
@@ -162,6 +180,8 @@ if ( have_posts() ) {
 
 	<?php 
 		if( have_rows('subExhibitor') ):
+			if(has_tag('virtualauthor')){
+			}else{ 
 echo		'<div class="contents" id="subExhibitor">';
 echo			'<div class="title">support exhibitor</div>';
 			
@@ -222,7 +242,7 @@ echo			'<div class="title">support exhibitor</div>';
 									<img src="<?php echo get_template_directory_uri(); ?>/image/common/icon/iconSns.png">
 								</div>
 								<div class="data">
-									<?php echo '<a href="'. $instagramUrl .'" target="_blank"> @'. $instagramAccount .'</a>';?>
+									<?php echo '<a href="'. $instagramUrl .'" target="_blank"> '. $instagramAccount .'</a>';?>
 								</div>
 							</div>
 							<div class="parts ">
@@ -245,6 +265,7 @@ echo			'<div class="title">support exhibitor</div>';
 				</div><!-- parts -->
 <?php
 			endwhile;
+			}
 		endif;
 
 
