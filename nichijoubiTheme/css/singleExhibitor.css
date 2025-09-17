@@ -36,7 +36,7 @@
 	vertical-align:middle;
 }
 .exhibitorInfo > .captionArea > .partsWrapper > .parts > .label img{
-	width:30px;
+	width:20px;
 }
 .exhibitorInfo > .captionArea > .partsWrapper > .parts > .data{
 	display:inline-block;
@@ -172,5 +172,37 @@
 
 /* スマホ縦画面用 */
 @media only screen and (max-width: 1024px) and (orientation:portrait){
+	.pageWrapper {
+    	padding-right: 0;
+		padding;0 30px;
+	}
+	.pageWrapper > .topImage {
+		width: calc(100vw - 60px);
+		height: initial;
+		margin: 30px;
+	}
+	.exhibitorInfo {
+		padding: 0 30px;
+	}
+	.exhibitorInfo > .captionArea {
+		width: 100%;
+        padding-right: 0;
+	}
+	.pageWrapper > .contentsWrapper > .contents > .substance > .image {
+		width: 100%;
+	}
+	.pageWrapper > .contentsWrapper {
+		margin: 30px;
+	}
+	.exhibitorInfo > .captionArea > .caption {
+    	padding-right: 0px;
+	}
+	.pageWrapper > .contentsWrapper > .contents > .substance > .captionArea {
+		width: 100%;
+	}
+	#subExhibitor > .parts {
+		width: 100%;
+		margin: 0px;
+	}
 
 }

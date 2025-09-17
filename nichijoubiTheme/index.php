@@ -100,7 +100,7 @@ $('.block').each(function() {
 
 			slideTargetBlock.find('img[data-slideNumber="' + nextViewImageNumber + '"]').css("opacity","1");
 			
-		}, 1000);
+		}, 500);
 
 /*
 		const $allImages = $block.find('.thumbnailImg');
@@ -139,9 +139,11 @@ $('.block').each(function() {
 			} else {
 				delayTime = Gqptime;
 			}
-			$block.css("opacity", "1");
+//			$block.css("opacity", "1");
+console.log("そろった？");
 
-			if(loadBlocks >= (totalBlockCount*2) ){
+			if(loadBlocks >= (totalBlockCount*1) ){
+				$(".block").css("opacity", "1");
 				startSlideshow();
 			}
 			else{
@@ -180,11 +182,13 @@ $('.block').each(function() {
 
 		setTimeout(function(block) {
 			
-			block.css("opacity", "1");
+//			block.css("opacity", "1");
 //			console.log(delayTime);
 		}, delayTime, targetBlock); // ★ setTimeoutの第3引数でtargetBlockを渡す
 		
 		if(loadBlocks >= (totalBlockCount*2) ){
+console.log("そろった？");
+			$(".block").css("opacity", "1");
 			startSlideshow();
 		}
 		else{
@@ -232,7 +236,7 @@ $('.block').each(function() {
 				<div class="subTitle"><div class="vertical">japanese handcraft</div></div>
 			</div><!-- logo -->
 			<div class="message fadeIn">
-				<div class="vertical twMode">
+				<div class=" twMode concept">
 					我們的日常生活中，衣、食、住的每一件「物品」，都是與我們一同度過歲月的夥伴。<br>
 					<br>
 					每一件物品，都蘊藏著一段故事。<br>
@@ -242,38 +246,57 @@ $('.block').each(function() {
 					<br>
 					每一件物品，也都有其獨特的個性。<br>
 					<br>
-					當我們了解它們的個性，思考在日常生活中該如何使用與細心呵護， 便能在使用的過程中，與它們建立深厚的連結。透過這份用心與珍惜， 物品得以長久陪伴我們，並隨著時間的流轉愈加增添美麗。<br>
+					當我們了解它們的個性，思考在日常生活中該如何使用與細心呵護， 便能在使用的過程中，與它們建立深厚的連結。<br>
+					透過這份用心與珍惜， 物品得以長久陪伴我們，並隨著時間的流轉愈加增添美麗。<br>
 					<br>
 					這樣的日常美景，能悄然孕育出幸福的瞬間，引領我們走向一種細緻而舒心的生活方式， 也讓我們的心靈感受到溫柔與豐盈。<br>
 					<br>
 					我們所追求的，是這樣一種生活的美好。並以此為初心，投入每一件物品的製作。<br>
+					<br>
+					是一個延續日本精緻手工傳統的職人集體。<br>
+					我們將於 2025年11月 参加「島作」展出。非常期待與台灣的各位見面
 				</div>
+			</div>
+		</div><!-- contents about -->
 
 
-				<div id="exhibitorInfo">
-					<div class="instroduction">
-						<div class="teamName">
-							日常美 — Nichijoubi
-						</div>
-						<div class="concept">
-							是一個延續日本精緻手工傳統的職人集體。
-							我們將於 2025年11月 参加「島作」展出。
-							非常期待與台灣的各位見面
-						</div>
-
-					</div>
-
+		<div class="contents" id="exhibitorInfo">
+			<div class="title fadeIn">
+				參展廠商<!-- exhibitor -->
+				<div class="vLine"></div>
+			</div>
 
 <?php
-
-	$args = array(
-		'post_type'      => 'post',
-		'category_name'  => 'exhibitor',
-		'posts_per_page' => -1,
-		'post__not_in'   => array(256), // 投稿ID 256 を除外
-	);
 	
+	$args = array(
+    'post_type'      => 'post',
+    'category_name'  => 'exhibitor',
+    'posts_per_page' => -1,
+    'post__not_in'   => array(256), // 投稿ID 256 を除外
+    'orderby'        => 'date',
+);
+	
+	// ユーザーエージェントを取得
+	$user_agent = $_SERVER['HTTP_USER_AGENT'];
+	
+	// ユーザーエージェントがモバイルデバイス（スマホ、タブレット）のものか判定
+	$is_mobile = false;
+	if ( preg_match('/Mobile|Android|BlackBerry|iPhone|iPad|Windows Phone|webOS/i', $user_agent) ) {
+		$is_mobile = true;
+	}
+	
+	// 判定結果に基づいて order を変更
+	if ( $is_mobile ) {
+		// モバイル版のクエリ
+		$args['order'] = 'DESC'; // 新しい順
+	} else {
+		// PC版のクエリ
+		$args['order'] = 'ASC';  // 古い順
+	}
+	
+	// WP_Queryインスタンスを作成
 	$exhibitor_posts = new WP_Query($args);
+
 
 	// ループ開始
 	if ($exhibitor_posts->have_posts()) {
@@ -283,6 +306,9 @@ $('.block').each(function() {
 			// ここでACFフィールドの値を取得
 			$brandName = get_field('brandName');
 			$exhibitorName = get_field('exhibitorName');
+if(($exhibitorName)&&($brandName)){
+			$brandName = "(".$brandName.")";
+}
 			$genre = get_field('genre');
 			
 			$post_url = get_permalink();
@@ -296,7 +322,7 @@ $('.block').each(function() {
 else{?>
 					<a href="<?php echo $post_url; ?>">
 <?php } ?>
-					<div class="parts">
+					<div class="parts fadeIn">
 <?php  if ($is_virtual_author) { ?>
 					<a class="aLink" href="<?php echo $post_url; ?>">
 <?php } ?>
@@ -318,7 +344,7 @@ if ( have_rows('subExhibitor') ) :
 		echo '<div class=" subExhibitor">';
  // 各サブ出展者のデータをループで処理
     while ( have_rows('subExhibitor') ) : the_row();
-		echo '<div class="parts fadeIn">';
+		echo '<div class="parts hasLine">';
         // 「subExhibitor」のサブフィールドを取得
         $subExhibitorName = get_sub_field('exhibitorName');
         $subBrandName = get_sub_field('brandName');
@@ -334,11 +360,13 @@ if ( have_rows('subExhibitor') ) :
 		echo '<a class="aLink" href="'.$post_url.'">';
 }
         // 取得したサブ出展者情報を表示
-		echo '<div class="genre">'. $subGenre . '</div>';
-if ( $subExhibitorName ){
+		echo '<div class="genre">'. $subGenre . '　</div>';
 		echo '<div class="exhibitorName">'. $subExhibitorName. '</div>';
+if (( $subExhibitorName )&&($subBrandName) ){
+		$subBrandName = "(".$subBrandName.")";
 }
-		echo '<div class="brandName"> ( '. $subBrandName . ' ) </div>';
+
+		echo '<div class="brandName">'. $subBrandName . '</div>';
 
             
 		if ( have_rows('imageList') ) :
@@ -379,17 +407,17 @@ endif; // End of subExhibitor check
 				</a>
 				
 			</div>
-		</div><!-- contents about -->
+		</div><!-- contents exhibitorInfo -->
 		<div class="contents" id="exhibition">
-			<div class="title">
-				exhibition infomation
-				<div class="vLine"></div>
+			<div class="title fadeIn">
+				展覽資訊<!--exhibition infomation -->
+				<div class="vLine fadeIn"></div>
 			</div>
 			<div class="captionArea">
-				<div class="logo">
+				<div class="logo fadeIn">
 					<img src="<?php echo get_template_directory_uri(); ?>/image/common/shimasakuLogo.png">
 				</div>
-				<div class="caption">
+				<div class="caption fadeIn">
 					<div class="text">
 						「島作」是連結日本與台灣工藝的活動。<a href="https://islandcrafts.com.tw/">點擊此處了</a>解更多關於島作的資訊。
 					</div>
@@ -400,33 +428,44 @@ endif; // End of subExhibitor check
 					</div>
 				</div>
 			</div><!-- caption -->
-			<div class="mapImage">
-				<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3614.706667849373!2d121.5606524!3d25.0440269!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3442abbf5ad5ee49%3A0x154913cae7209f78!2z5YyX5ZCR6KO96I-45bel5bug!5e0!3m2!1sja!2sjp!4v1757573801335!5m2!1sja!2sjp" width="100%" height="800" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+			<div class="mapImage fadeIn">
+
+<?php
+
+	if ( $is_mobile ) {
+		// モバイル版のクエリ
+		echo '				<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3614.706667849373!2d121.5606524!3d25.0440269!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3442abbf5ad5ee49%3A0x154913cae7209f78!2z5YyX5ZCR6KO96I-45bel5bug!5e0!3m2!1sja!2sjp!4v1757573801335!5m2!1sja!2sjp" width="100%" height="400" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>';
+	} else {
+		// PC版のクエリ
+		echo '				<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3614.706667849373!2d121.5606524!3d25.0440269!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3442abbf5ad5ee49%3A0x154913cae7209f78!2z5YyX5ZCR6KO96I-45bel5bug!5e0!3m2!1sja!2sjp!4v1757573801335!5m2!1sja!2sjp" width="100%" height="800" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>';
+
+	}
+?>
 			</div>
 		</div><!-- contents exhibition -->
-		<div class="contents" id="contact">
+		<div class="contents fadeIn" id="contact">
 			<div class="title">
-				contact us
+				聯絡阮<!-- contact us -->
 				<div class="vLine"></div>
 			</div>
 			<div class="formArea">
 				<form class="contactForm">
 					<div class="caption"></div>
 					<div class="parts">
-						<div class="label">your name *</div>
-						<div class="data"><input type="text" name="cName" required></div>
+						<div class="label">大名<!--your name--> *</div>
+						<div class="data"><input class="text" type="text" name="cName" required></div>
 					</div>
 					<div class="parts">
-						<div class="label">your email *</div>
-						<div class="data"><input type="email" name="mail" required></div>
+						<div class="label">電子郵件<!--your email--> *</div>
+						<div class="data"><input class="text"  type="email" name="mail" required></div>
 					</div>
 					<div class="parts">
-						<div class="label">Your Message *</div>
+						<div class="label">留言<!--Your Message--> *</div>
 						<div class="data"><textarea id="message" name="message" rows="5" maxlength="200" required></textarea></div>
 					</div>
 					<div class="parts">
 						<div class="label"></div>
-						<div class="data"><button type="submit" name="submit_form">送信する</button></div>
+						<div class="data"><button type="submit" name="submit_form"><!--送信する-->送出</button></div>
 					</div>
 				</form>
 			</div><!--formArea  -->

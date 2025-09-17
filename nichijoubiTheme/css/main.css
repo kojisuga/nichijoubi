@@ -9,7 +9,7 @@ html{
 
 }
 .pageWrapper > .contentsWrapper{
-
+    text-align: center;
 }
 .pageWrapper > .contentsWrapper > .contents{
 }
@@ -17,6 +17,7 @@ html{
 	width:calc(100vw - 180px);
 	height:100vh;
 	overflow:hidden;
+	text-align:left;
 }
 .pageWrapper > .contentsWrapper > #top > .thumbnailWrapper{
 	width:calc(100vw + var(--keyImageWidth));
@@ -73,13 +74,13 @@ html{
 }
 
 #about{
-	height:100vh;
     padding: 120px;
 	padding-right:200px;
     margin-bottom: 80px;
 }
 #about > .logo{
-	text-align: right;
+	text-align: left;
+    margin-bottom: 50px;
 }
 #about > .logo > .image{
 	width:100%;
@@ -98,8 +99,13 @@ html{
 }
 #about > .message{
     width: 100%;
-    height: calc(100vh - 450px);
+    /* height: calc(100vh - 450px); */
+    margin-bottom: 50px;
     position: relative;
+    text-align: center;
+}
+#about > .message > .concept{
+    text-align: left;
 }
 #about > .message >  .vertical{
 	writing-mode: vertical-rl;
@@ -116,7 +122,7 @@ html{
 	
 }
 #about > .message > #exhibitorInfo > .instroduction{
-	
+	    text-align: left;
 }
 #about > .message > #exhibitorInfo > .instroduction > .teamName{
 	font-size:120%;
@@ -129,8 +135,15 @@ html{
 #exhibitorInfo{
 	
 } 
+#exhibitorInfo > .title{
+	margin-bottom:100px;
+	text-align: center;
+}
 #exhibitorInfo .parts{
-    margin-bottom: 10px;		
+    margin-bottom: 10px;
+    writing-mode: vertical-rl;
+    display: inline-block;
+    vertical-align: top;		
 } 
 .parts > .genre{
     display: inline-block;
@@ -155,16 +168,28 @@ html{
     display: inline-block;	
 } 
 .parts > .subExhibitor{
-	border-left: solid 1px;
+/*	border-left: solid 1px;	*/
     padding-left: 10px;
     margin-left: 17px;
-    padding-top: 5px;
+    padding-top: 35px;
 
+}
+.subExhibitor > .parts{
+	display: block !important;
+}
+.hasLine::before{
+	content:" ";
+	display:inline-block;
+	width:1px;
+	height:30px;
+	margin-bottom:5px;
+	background:black;
 }
 #exhibitorInfo{
 	display: inline-block;
-    position: absolute;
     bottom: 20px;
+    text-align: left;
+    margin-bottom: 120px;
 }
 
 #exhibitorInfo > .instroduction{
@@ -323,7 +348,7 @@ button {
     border-width: 0.5px;
     background-color: black;
     border: solid 1px #dddddd;
-    color: white;
+    color: white !important;;
     text-align: center;
     transition: background-color 0.75s ease;
     transition: color 0.75s ease;
@@ -333,5 +358,79 @@ button {
 
 /* スマホ縦画面用 */
 @media only screen and (max-width: 1024px) and (orientation:portrait){
+	:root {
+		--keyImageWidth:calc(((100vw - 10px) / 3) - 10px);
+	}
 
+	.pageWrapper > .contentsWrapper > #top{
+		width:100vw;
+	}
+	.pageWrapper > .contentsWrapper > #top > .thumbnailWrapper {
+		width: 100vw;
+		height: 100vh;
+        padding: 5px;
+	}
+	.pageWrapper > .contentsWrapper > #top > .thumbnailWrapper > .linePats {
+		display: inline-block;
+		width: var(--keyImageWidth);
+		padding: 0;
+		margin: 0 5px;
+	}
+	.pageWrapper > .contentsWrapper > #top > .thumbnailWrapper > .linePats > .aLink > .block {
+		width: 100%;
+		height: calc(var(--keyImageWidth) * 0.6666);
+		margin-bottom: 10px;
+	}
+	
+	/*form parts*/
+	textarea {
+		width:100%;
+	}
+	input.text {
+		width: 100%;
+	}
+	#about {
+		padding: 40px;
+	}
+	#about > .logo {
+		text-align: center;
+	}
+	#exhibitorInfo .parts {
+    	writing-mode: initial;
+	}
+	.hasLine::before {
+		contents:"";
+		height:0;
+	}
+	.parts > .subExhibitor {
+		border-left: solid 1px;
+		padding-left: 10px;
+		margin-left: 17px;
+		padding-top: 5px;
+	}
+	#exhibitorInfo {
+		display: inline-block;
+		bottom: 20px;
+		text-align: left;
+		margin-bottom: 120px;
+		padding: 0 40px;
+	}
+	#exhibition, #contact {
+		padding: 30px;
+		text-align: center;
+	}
+	#exhibition > .mapImage {
+		padding: 0px;
+	}
+	#contact > .formArea > .contactForm {
+		width: 80%;
+	}
+	#exhibition > .captionArea> .logo {
+		display: inline-block;
+		vertical-align: middle;
+		margin-right: 30px;
+		text-align: center;
+		width: 100%;
+	}	
+	
 }

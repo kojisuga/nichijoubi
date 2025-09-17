@@ -80,5 +80,16 @@
 
 /* スマホ縦画面用 */
 @media only screen and (max-width: 1024px) and (orientation:portrait){
-
+	.menu{
+		position: fixed;
+		top: 0;
+		right: 0;
+		z-index: 100;
+		background: white;
+	}
+	.menu > .background {
+		height:0;
+		width:100%;
+		over-flow:hidden;
+	}
 }
