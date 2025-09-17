@@ -143,7 +143,9 @@ $('.block').each(function() {
 console.log("そろった？");
 
 			if(loadBlocks >= (totalBlockCount*1) ){
-				$(".block").css("opacity", "1");
+				$(".block").animate({
+					opacity: 1
+				}, 1000);
 				startSlideshow();
 			}
 			else{
@@ -188,7 +190,10 @@ console.log("そろった？");
 		
 		if(loadBlocks >= (totalBlockCount*2) ){
 console.log("そろった？");
-			$(".block").css("opacity", "1");
+			$(".block").animate({
+				opacity: 1
+			}, 1000);
+
 			startSlideshow();
 		}
 		else{
