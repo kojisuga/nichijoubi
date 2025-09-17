@@ -12,29 +12,7 @@
 var $Menuflag = "CLOSE";
 
 $(function(){
-	$(".HeaderMenuIcon").on("click", function() {
-		if( $Menuflag == "CLOSE" ){
-			$Menuflag = "OPEN";
-			
-			// Menuバーのスライド
-			$(".BasicHeaderMenu").css("height","100vh");
-			$(".BasicHeaderMenu").css("opacity","1");
-			$("#Bar1").addClass("rotate45");
-			$("#Bar3").addClass("rotate_45");
-			$("#Bar2").addClass("hide");
-		}
-		else{
-			$Menuflag = "CLOSE";
-			// Menuバーのスライド
-			$(".BasicHeaderMenu").css("height","0vh");
-			$(".BasicHeaderMenu").css("opacity","0");
-			$("#Bar1").removeClass("rotate45");
-			$("#Bar3").removeClass("rotate_45");
-			$("#Bar2").removeClass("hide");
-		}
-	});
-	
-	// menu hover
+
 	
 	
 });
@@ -70,9 +48,9 @@ $(function(){
 		</div>
 		<div class="menuListWrapper">
 			<a class="aLink" href="<?php echo get_home_url() ?>/"><div class="list">top</div></a>
-			<a class="aLink" href="<?php echo get_home_url() ?>/"><div class="list">about</div></a>
-			<a class="aLink" href="<?php echo get_home_url() ?>/"><div class="list">exhibitor</div></a>
-			<a class="aLink" href="<?php echo get_home_url() ?>/"><div class="list">contact</div></a>
+			<a class="aLink" href="<?php echo get_home_url() ?>/#about"><div class="list">about</div></a>
+			<a class="aLink" href="<?php echo get_home_url() ?>/#exhibitor"><div class="list">exhibitor</div></a>
+			<a class="aLink" href="<?php echo get_home_url() ?>/#contact"><div class="list">contact</div></a>
 		</div><!-- menuListWrapper -->
 		<div class="lang">
 			<div class="label">Lang</div>
@@ -107,5 +85,55 @@ $(function(){
 		</div>
 	</div><!-- background -->
 	<div class="mobDisp menuButton"></div>
-
 </div><!-- basicMenu -->
+
+
+<script>
+
+
+var $Menuflag = "CLOSE";
+
+$(function(){
+	$(".openMenu > .btn").on("click", function() {
+		if( $Menuflag == "CLOSE" ){
+			$Menuflag = "OPEN";
+			console.log("open");
+			// Menuバーのスライド
+			$(".base").css("height","100vh");
+			$(".base").css("opacity","1");
+			$("#bar1").addClass("rotate45");
+			$("#bar3").addClass("rotate_45");
+			$("#bar2").addClass("hide");
+		}
+		else{
+			$Menuflag = "CLOSE";
+			// Menuバーのスライド
+			console.log("CLOSE");
+
+			$(".base").css("height","0vh");
+			$(".base").css("opacity","0");
+			$("#bar1").removeClass("rotate45");
+			$("#bar3").removeClass("rotate_45");
+			$("#bar2").removeClass("hide");
+		}
+	});
+});
+
+</script>
+<div class="openMenu mobDisp">
+	<div class="base">
+		<div class="menuListWrapper">
+			<a class="aLink" href="<?php echo get_home_url() ?>/"><div class="list">top</div></a>
+			<a class="aLink" href="<?php echo get_home_url() ?>/#about"><div class="list">about</div></a>
+			<a class="aLink" href="<?php echo get_home_url() ?>/#exhibitor"><div class="list">exhibitor</div></a>
+			<a class="aLink" href="<?php echo get_home_url() ?>/#contact"><div class="list">contact</div></a>
+		</div><!-- menuListWrapper -->
+	</div><!-- base -->
+
+	<div class="btn">
+		<div class="bar" id="bar1"></div>
+		<div class="bar" id="bar2"></div>
+		<div class="bar" id="bar3"></div>
+	</div><!-- base -->
+
+</div><!-- openMenu -->

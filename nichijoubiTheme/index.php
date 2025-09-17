@@ -39,7 +39,7 @@ jQuery(document).ready(function($) {
 			'keyImageWidth': widthInPixels,
 		},
 		success: function( response ){
-			$('#top').html(response);
+			$('#top').prepend(response);
 			viewThumbnail();
 			
 		}
@@ -50,6 +50,27 @@ jQuery(document).ready(function($) {
 		console.log($(this).attr('data-postURL'));
 	});
 
+});
+
+$(function(){
+	var bodyChange_y;
+	
+	if( "#about" == location.hash ){
+		console.log("about");
+		bodyChange_y =$("#about").offset().top - 0;
+	}
+	else if( "#exhibitor" == location.hash ){
+		console.log("exhibitor");
+		bodyChange_y =$("#exhibitorInfo").offset().top - 80;
+	}
+	else if( "#contact" == location.hash ){
+		console.log("exhibitor");
+		bodyChange_y =$("#contact").offset().top - 80;
+	}
+	if( bodyChange_y > 0 ){
+		 $("body,html").animate({scrollTop:bodyChange_y},500);
+	}
+	
 });
 
 function viewThumbnail(){
@@ -226,11 +247,10 @@ console.log("そろった？");
 
 <div class="pageWrapper">
 	<div class="contentsWrapper">
-		
 		<div class="contents" id="top">
-			<div class="linePats"><div class="block"></div><!-- block --><div class="block"></div><!-- block --><div class="block"></div><!-- block --><div class="block"></div><!-- block --><div class="block"></div><!-- block --><div class="block"></div><!-- block --><div class="block"></div><!-- block --><div class="block"></div><!-- block --><div class="block"></div><!-- block -->
-			</div><!-- linePats -->
-		
+			<div class="logo">
+					<img src="<?php echo get_template_directory_uri(); ?>/image/common/nichijoubi_logo_wh.png">
+			</div>
 	
 		</div><!-- contents -->
 		<div class="contents" id="about">

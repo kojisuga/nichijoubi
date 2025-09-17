@@ -80,16 +80,67 @@
 
 /* スマホ縦画面用 */
 @media only screen and (max-width: 1024px) and (orientation:portrait){
-	.menu{
-		position: fixed;
-		top: 0;
-		right: 0;
-		z-index: 100;
+	
+	.openMenu{
+		position:fixed;
+		z-index: 200;
+		top:0;
+		left:0;
+	}
+	.openMenu > .base{
+		width: 100vw;
+		height: 0;
+		opacity: 0;
 		background: white;
+		overflow: hidden;
+	
+		/* for animation */
+		-webkit-transition: all 1s;
+		-moz-transition: all 1s;
+		-ms-transition: all 1s;
+		-o-transition: all 1s;
+		transition: all 1s;
 	}
-	.menu > .background {
-		height:0;
-		width:100%;
-		over-flow:hidden;
+	.openMenu > .base > .menuListWrapper{
+		text-align: left;
+		margin-top: 30px;
+		margin-left: 30px;
+		font-size: 150%;
 	}
+	.openMenu > .base > .menuListWrapper > .list{
+		
+	}
+	.openMenu > .btn{
+		position:absolute;
+		top:10px;
+		right:10px;
+	}
+	.openMenu > .btn > .bar{
+		height:1px;
+		width: 30px;
+		margin-bottom: 11px;
+		background:black;
+	
+		/* for animation */
+		-webkit-transition: all 1s;
+		-moz-transition: all 1s;
+		-ms-transition: all 1s;
+		-o-transition: all 1s;
+		transition: all 1s;
+	}
+	.rotate45 {
+		-moz-transform: translate(0px,10px) rotate(45deg);
+		-webkit-transform: translate(0px,10px) rotate(45deg);
+		-o-transform: translate(0px,10px) rotate(45deg);
+		-ms-transform: translate(0px,10px) rotate(45deg);
+		transform: translate(0px,10px) rotate(45deg);
+	}
+	.rotate_45{
+		-moz-transform: translate(0px,-2px) rotate(-45deg);
+		-webkit-transform: translate(0px,-2px) rotate(-45deg);
+		-o-transform: translate(0px,-2px) rotate(-45deg);
+		-ms-transform: translate(0px,-2px) rotate(-45deg);
+		transform: translate(0px,-2px) rotate(-45deg);
+	}
+
 }

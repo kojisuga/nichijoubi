@@ -42,7 +42,7 @@ body{
 .pcDisp{
 	
 }
-.mobileDisp{
+.mobDisp{
 	display:none !important;
 }
 
@@ -472,7 +472,7 @@ a{
 	.pcDisp{
 		display:none !important;
 	}
-	.mobileDisp{
+	.mobDisp{
 		display:initial !important;
 	}
 
