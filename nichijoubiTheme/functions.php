@@ -396,7 +396,7 @@ function genTopThumnail() {
 	
 	// 投稿IDを格納するための空の配列を初期化
 	$arPostID = array();
-	
+	$arRandomIndex = array();
 	// ループ開始
 	if ($exhibitor_posts->have_posts()) {
 		while ($exhibitor_posts->have_posts()) {
@@ -434,6 +434,8 @@ function genTopThumnail() {
 			$blockSerialNumber = getRandomNumber4Block($blockNumber*$lineNumber)+1;
 			$randumIndex = getRandomNumber4Post(count($arPostID));
 			
+			$arRandomIndex[] = $randumIndex;
+
 			$post_id = $arPostID[$randumIndex]; // 例: 投稿IDが123の場合
 			$post_url = get_permalink($post_id);
 			$outputCode .= '<a class="aLink" href="'.$post_url.'">';
@@ -474,6 +476,7 @@ function genTopThumnail() {
 		$outputCode .= '</div>';
 	}
 	$outputCode .= '</div>';
+	
 
 	echo $outputCode;
 	die();

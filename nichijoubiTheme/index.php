@@ -248,9 +248,6 @@ console.log("そろった？");
 <div class="pageWrapper">
 	<div class="contentsWrapper">
 		<div class="contents" id="top">
-			<div class="logo">
-					<img src="<?php echo get_template_directory_uri(); ?>/image/common/nichijoubi_logo_wh.png">
-			</div>
 	
 		</div><!-- contents -->
 		<div class="contents" id="about">
