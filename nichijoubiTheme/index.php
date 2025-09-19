@@ -3,6 +3,7 @@
 <meta></meta>
 
 <link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/css/main.css?<?php echo file_date(get_template_directory() . '/css/main.css'); ?>" type="text/css" />
+<script src="//code.jquery.com/jquery-3.2.1.min.js"></script>
 
 <?php require "common.php"; ?> 																	<!-- Call common.php ---->
 <script src="//code.jquery.com/jquery-3.2.1.min.js"></script>
@@ -13,7 +14,8 @@ jQuery(document).ready(function($) {
 
     const viewportHeight = window.innerHeight;
     const viewportWidth = window.innerWidth;
-		
+	
+
 	const dummyDiv = $('<div>').css({
 		'position': 'absolute',
 		'visibility': 'hidden', // ユーザーに見えないようにする
@@ -26,8 +28,6 @@ jQuery(document).ready(function($) {
 	// ダミー要素を削除
 	dummyDiv.remove();
 	
-	console.log(`--keyImageWidthの計算結果（px）：${widthInPixels}`);
-
     // AJAXリクエストでPHPに値を送信
 	$.ajax({
 		type: 'POST',
@@ -44,33 +44,7 @@ jQuery(document).ready(function($) {
 			
 		}
 	});	
-	// ↓↓↓ 修正されたイベントハンドラ ↓↓↓
-	$('#top').on('click', '.block', function() {
-		console.log("click");
-		console.log($(this).attr('data-postURL'));
-	});
 
-});
-
-$(function(){
-	var bodyChange_y;
-	
-	if( "#about" == location.hash ){
-		console.log("about");
-		bodyChange_y =$("#about").offset().top - 0;
-	}
-	else if( "#exhibitor" == location.hash ){
-		console.log("exhibitor");
-		bodyChange_y =$("#exhibitorInfo").offset().top - 80;
-	}
-	else if( "#contact" == location.hash ){
-		console.log("exhibitor");
-		bodyChange_y =$("#contact").offset().top - 80;
-	}
-	if( bodyChange_y > 0 ){
-		 $("body,html").animate({scrollTop:bodyChange_y},500);
-	}
-	
 });
 
 function viewThumbnail(){
@@ -84,75 +58,16 @@ $('.block').each(function() {
 	const totalImages = $images.length;
 	let loadedImages = 0;
 
-	// スライドショー開始関数（元のコードのまま）
-	function startSlideshow() {
-
-		setInterval(function() {
-
-			// tagetのブロックの画像数を取得
-			totalBlockNum = $('.block').length;
-			
-			// random数を取得
-			slideTargetBlockNum = Math.floor(Math.random() * (totalBlockNum - 0 + 1)) + 0;
-//			console.log(slideTargetBlockNum);
-
-			slideTargetBlock = $(".thumbnailWrapper").find('.block[data-blockserialnumber="'+slideTargetBlockNum+'"]');
-//			console.log("slideTargetBlock:"+slideTargetBlock);
-			slideTargetBlockImgCoount = slideTargetBlock.find('img').length;
-			
-			// tagetのブロックの現在の表示スライドを取得
-			currentViewImageNumber = slideTargetBlock.attr('data-viewImageNumber');
-			// tagetのブロックの次の表示スライドを取得
-			if(slideTargetBlockImgCoount >= parseInt(currentViewImageNumber, 10)+1){
-				nextViewImageNumber = parseInt(currentViewImageNumber, 10) + 1; // 結果: 21
-			}
-			else{
-				nextViewImageNumber = 1;
-			}
-			slideTargetBlock.attr('data-viewImageNumber', nextViewImageNumber);
-			
-//			console.log("blockNumber:"+slideTargetBlockNum+"の");
-//			console.log("currentViewImageNumber:"+currentViewImageNumber);
-//			console.log("nextViewImageNumber:"+nextViewImageNumber );
-
-//			console.log(slideTargetBlock.find('*'));
-			
-			slideTargetBlock.find('img[data-slidenumber="' + currentViewImageNumber + '"]').css("opacity","0");
-
-			slideTargetBlock.find('img[data-slideNumber="' + nextViewImageNumber + '"]').css("opacity","1");
-			
-		}, 500);
-
-/*
-		const $allImages = $block.find('.thumbnailImg');
-		const totalSlides = $allImages.length;
-		let currentSlide = 0;
-		$allImages.css('opacity', '0');
-		$allImages.eq(0).css('opacity', '1');
-		setInterval(function() {
-			$allImages.eq(currentSlide).animate({
-				opacity: 0
-			}, 1500);
-			currentSlide = (currentSlide + 1) % totalSlides;
-			$allImages.eq(currentSlide).animate({
-				opacity: 1
-			}, 1500);
-		}, 10000);
-*/
-	}
 
 	// 初回読み込みとキャッシュからの読み込みを処理する関数
 	function handleImageLoad() {
-//		console.log("execute handleImageLoad");
 
 		const totalBlockCount = $('.block').length;
 		loadedImages++;
 		if (loadedImages === totalImages) {
 			loadBlocks++;
-//			console.log(loadBlocks + "番目のブロック読み込み完了");
 			const slideshowStartTime = new Date().getTime();
 			const timeDifference = slideshowStartTime - readyTime;
-//			console.log(`\n時間差分: ${timeDifference} ms`);
 			Idealtime = 300 * loadBlocks;
 			Gqptime = Idealtime - timeDifference;
 			if (Gqptime <= 0) {
@@ -161,7 +76,6 @@ $('.block').each(function() {
 				delayTime = Gqptime;
 			}
 //			$block.css("opacity", "1");
-console.log("そろった？");
 
 			if(loadBlocks >= (totalBlockCount*1) ){
 				$(".block").animate({
@@ -171,20 +85,15 @@ console.log("そろった？");
 			}
 			else{
 			}
-
-
 		}
 	}
 
 	function randomLoad(){
-//		console.log("execute randomLoad");
 		loadedImages++;
 		loadBlocks++;
 		const totalBlockCount = $('.block').length;
 
-//		console.log("load serialNumber : "+loadBlocks);
 		targetBlock = $(".thumbnailWrapper").find('.block[data-blockserialnumber="'+loadBlocks+'"]');
-//		console.log(targetBlock);
 		const slideshowStartTime = new Date().getTime();
 		const timeDifference = slideshowStartTime - readyTime;
 		Idealtime = 125 * loadBlocks;
@@ -205,12 +114,9 @@ console.log("そろった？");
 
 		setTimeout(function(block) {
 			
-//			block.css("opacity", "1");
-//			console.log(delayTime);
 		}, delayTime, targetBlock); // ★ setTimeoutの第3引数でtargetBlockを渡す
 		
 		if(loadBlocks >= (totalBlockCount*2) ){
-console.log("そろった？");
 			$(".block").animate({
 				opacity: 1
 			}, 1000);
@@ -228,16 +134,73 @@ console.log("そろった？");
 		if (this.complete) {
 //			console.log("キャッシュから読み込み: " + $(this).attr('src'));
 			// キャッシュからの読み込み時にも同じ処理を実行
-			randomLoad(); 
+//			randomLoad(); 
 		} else {
 //			console.log("サーバーから新規読み込み: " + $(this).attr('src'));
-			$images.on('load', handleImageLoad);
+//			$images.on('load', handleImageLoad);
 
 		}
 	});
 });
+
+
+	// スライドショー開始関数（元のコードのまま）
+	function startSlideshow() {
+
+		setInterval(function() {
+			
+			// tagetのブロックの画像数を取得
+			totalBlockNum = $('.block').length;
+			
+			// random数を取得
+			slideTargetBlockNum = Math.floor(Math.random() * totalBlockNum) + 1;
+
+			slideTargetBlock = $(".thumbnailWrapper").find('.block[data-blockserialnumber="'+slideTargetBlockNum+'"]');
+			slideTargetBlockImgCoount = slideTargetBlock.find('img').length;
+			
+
+			// tagetのブロックの現在の表示スライドを取得
+			currentViewImageNumber = slideTargetBlock.attr('data-viewImageNumber');
+			// tagetのブロックの次の表示スライドを取得
+			if(slideTargetBlockImgCoount >= parseInt(currentViewImageNumber, 10)+1){
+				nextViewImageNumber = parseInt(currentViewImageNumber, 10) + 1; // 結果: 21
+			}
+			else{
+				nextViewImageNumber = 1;
+			}
+
+			slideTargetBlock.attr('data-viewImageNumber', nextViewImageNumber);
+			
+			slideTargetBlock.find('img[data-slidenumber="' + currentViewImageNumber + '"]').css("opacity","0");
+
+			changeSlideImg = slideTargetBlock.find('img[data-slidenumber="' + currentViewImageNumber + '"]')
+
+			// 取得した要素の数を変数に格納
+			var elementCount = changeSlideImg.length;
+			
+			// 要素が取得できたかどうかを判定
+			if (elementCount > 0) {
+				// 要素が1つ以上取得できた場合
+			} else {
+				// 要素が取得できなかった場合
+			}
+			slideTargetBlock.find('img[data-slideNumber="' + nextViewImageNumber + '"]').css("opacity","1");
+			
+		}, 1500);
+	}
+
+	setTimeout(function() {
+			$(".thumbnailWrapper").animate({
+				opacity: 1
+			}, 1000);
+
+			startSlideshow();
+	}, 500); // ★ setTimeoutの第3引数でtargetBlockを渡す
+
 }
 </script>
+
+
 
 
 </head>
@@ -258,7 +221,7 @@ console.log("そろった？");
 				<div class="subTitle"><div class="vertical">japanese handcraft</div></div>
 			</div><!-- logo -->
 			<div class="message fadeIn">
-				<div class=" twMode concept">
+				<div class=" langTW concept">
 					我們的日常生活中，衣、食、住的每一件「物品」，都是與我們一同度過歲月的夥伴。<br>
 					<br>
 					每一件物品，都蘊藏著一段故事。<br>
@@ -278,12 +241,36 @@ console.log("そろった？");
 					是一個延續日本精緻手工傳統的職人集體。<br>
 					我們將於 2025年11月 参加「島作」展出。非常期待與台灣的各位見面
 				</div>
+				<div class=" langJP concept">
+					私たちの日常。<br>
+					日々を共にする衣食住にまつわる様々な「もの」たち。<br>
+					<br>
+					そのひとつひとつにあるストーリー<br>
+					どこで生まれ<br>
+					作り手がどんな想いで命を吹き込んだのか<br>
+					<br>
+					そして、持ちえた個性<br>
+					「もの」が持つそれぞれの個性を知り、想いを巡らせる<br>
+					<br>
+					日々の暮らしの中で向き合い、大切に長く使い続けることで<br>
+					より美しさを増していく「もの」たち<br>
+					<br>
+					日常の美しい景色が、ささやかな幸せの瞬間を生み<br>
+					優しくあたたかい心、丁寧で心地よい暮らしへと導いてくれる<br>
+					<br>
+					私たちはそんな暮らしを目指すものづくりをしています。<br>
+				</div>
+
 			</div>
 		</div><!-- contents about -->
 
 
 		<div class="contents" id="exhibitorInfo">
-			<div class="title fadeIn">
+			<div class="title fadeIn langJP">
+				exhibitor
+				<div class="vLine"></div>
+			</div>
+			<div class="title fadeIn langTW">
 				參展廠商<!-- exhibitor -->
 				<div class="vLine"></div>
 			</div>
@@ -329,7 +316,7 @@ console.log("そろった？");
 			$brandName = get_field('brandName');
 			$exhibitorName = get_field('exhibitorName');
 if(($exhibitorName)&&($brandName)){
-			$brandName = "(".$brandName.")";
+			$brandName = "（".$brandName."）";
 }
 			$genre = get_field('genre');
 			
@@ -352,9 +339,11 @@ else{?>
 						<div class="genre">
 							<?php echo $genre; ?>
 						</div>
+<?php if($exhibitorName){ ?>
 						<div class="exhibitorName">
 							<?php echo $exhibitorName; ?>
 						</div>
+<?php }?>
 						<div class="brandName">
 							<?php echo $brandName; ?>
 						</div>
@@ -385,7 +374,7 @@ if ( have_rows('subExhibitor') ) :
 		echo '<div class="genre">'. $subGenre . '　</div>';
 		echo '<div class="exhibitorName">'. $subExhibitorName. '</div>';
 if (( $subExhibitorName )&&($subBrandName) ){
-		$subBrandName = "(".$subBrandName.")";
+		$subBrandName = "（".$subBrandName."）";
 }
 
 		echo '<div class="brandName">'. $subBrandName . '</div>';
@@ -431,8 +420,12 @@ endif; // End of subExhibitor check
 			</div>
 		</div><!-- contents exhibitorInfo -->
 		<div class="contents" id="exhibition">
-			<div class="title fadeIn">
+			<div class="langTW title fadeIn">
 				展覽資訊<!--exhibition infomation -->
+				<div class="vLine fadeIn"></div>
+			</div>
+			<div class="langJP title fadeIn">
+				exhibition infomation
 				<div class="vLine fadeIn"></div>
 			</div>
 			<div class="captionArea">
@@ -440,13 +433,19 @@ endif; // End of subExhibitor check
 					<img src="<?php echo get_template_directory_uri(); ?>/image/common/shimasakuLogo.png">
 				</div>
 				<div class="caption fadeIn">
-					<div class="text">
+					<div class="text langTW">
 						「島作」是連結日本與台灣工藝的活動。<a href="https://islandcrafts.com.tw/">點擊此處了</a>解更多關於島作的資訊。
 					</div>
+
+					<div class="text langJP">
+「島作」は、日本と台湾の工芸をつなぐイベントです。島作の詳細については<a href="https://islandcrafts.com.tw/">こちら</a>をご覧ください。
+					</div>
+
+
 					<div class="info">
-						<div class="parts"><div class="label">日期</div><div class="text">2025.11.21（五）-11.23（日）</div></div>
+						<div class="parts"><div class="label langTW">日期</div><div class="label langJP">期間</div><div class="text langTW">2025.11.21（五）-11.23（日）</div><div class="text langJP">2025.11.21（金）-11.23（日）</div></div>
 						<div class="parts"><div class="label">時間</div><div class="text">10:30-17:30</div></div>
-						<div class="parts"><div class="label">地點</div><div class="text">松山文創園區・北向製菸工廠</div></div>
+						<div class="parts"><div class="label langTW">地點</div><div class="label langJP">場所</div><div class="text">松山文創園區・北向製菸工廠</div></div>
 					</div>
 				</div>
 			</div><!-- caption -->
@@ -466,33 +465,43 @@ endif; // End of subExhibitor check
 			</div>
 		</div><!-- contents exhibition -->
 		<div class="contents fadeIn" id="contact">
-			<div class="title">
+			<div class="title langTW">
 				聯絡阮<!-- contact us -->
+				<div class="vLine"></div>
+			</div>
+			<div class="title langJP">
+					contact us
 				<div class="vLine"></div>
 			</div>
 			<div class="formArea">
 				<form class="contactForm">
 					<div class="caption"></div>
 					<div class="parts">
-						<div class="label">大名<!--your name--> *</div>
+						<div class="label langTW">大名<!--your name--> *</div>
+						<div class="label langJP">your name *</div>
 						<div class="data"><input class="text" type="text" name="cName" required></div>
 					</div>
 					<div class="parts">
-						<div class="label">電子郵件<!--your email--> *</div>
+						<div class="label langTW">電子郵件<!--your email--> *</div>
+						<div class="label langJP">your email *</div>
 						<div class="data"><input class="text"  type="email" name="mail" required></div>
 					</div>
 					<div class="parts">
-						<div class="label">留言<!--Your Message--> *</div>
+						<div class="label langTW">留言<!--Your Message--> *</div>
+						<div class="label langJP">Your Message*</div>
 						<div class="data"><textarea id="message" name="message" rows="5" maxlength="200" required></textarea></div>
 					</div>
 					<div class="parts">
 						<div class="label"></div>
-						<div class="data"><button type="submit" name="submit_form"><!--送信する-->送出</button></div>
+						<div class="data langTW"><button type="submit" name="submit_form"><!--送信する-->送出</button></div>
+						<div class="data langJP"><button type="submit" name="submit_form">送信する</button></div>
 					</div>
 				</form>
 			</div><!--formArea  -->
 		</div><!-- contents contact -->
 	</div><!-- contentsWrapper -->
 </div><!-- pageWrapper -->
+
+<?php require "footer.php"; ?> 																	<!-- Call common.php ---->
 </body>
 </html>

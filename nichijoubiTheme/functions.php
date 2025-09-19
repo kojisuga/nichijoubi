@@ -415,15 +415,17 @@ function genTopThumnail() {
 		echo '該当する投稿は見つかりませんでした。';
 	}
 
-	// 画像情報を取得
-
-	// 画像情報に紐づく投稿番号を取得
-	
-
+	// for test
+$arblockSerialNumber = array();
+$debutText =""+
 	// line数を決定
 	$lineNumber = intval($width / $keyImageWidth);
 	// block数を決定
-	$blockNumber =  intval($height / ( ($keyImageWidth * 0.6666) + 10 )) +1 ;
+	$blockNumber =  ceil($height / ( ($keyImageWidth * 0.6666) + 20 )) ;
+
+$debutText.="width:".$width." $height: ".$height."keyImageWidth ".$keyImageWidth."</br>";
+
+$debutText.="LineNumber:".$lineNumber." blockNumber: ".$blockNumber."</br>";
 
 	$outputCode .= '<div class="thumbnailWrapper">';
 	for($i = 0; $i < $lineNumber; $i++){
@@ -431,8 +433,9 @@ function genTopThumnail() {
 
 		for($j = 0; $j < $blockNumber; $j++){
 
-			$blockSerialNumber = getRandomNumber4Block($blockNumber*$lineNumber)+1;
-			$randumIndex = getRandomNumber4Post(count($arPostID));
+			$blockSerialNumber = getRandomNumber4Block($blockNumber*$lineNumber);
+$arblockSerialNumber[]=$blockSerialNumber;
+			$randumIndex = getRandomNumber4Post(count($arPostID) -1);
 			
 			$arRandomIndex[] = $randumIndex;
 
@@ -460,12 +463,15 @@ function genTopThumnail() {
 			}
 			getRandomNumber4Img(count($arImageList) - 1,true);
 
-			for ($k = count($arImageList) - 1; $k >= 0; $k--) {
+			for ($k = 4; $k >= 0; $k--) {
 				$randaomIndex = getRandomNumber4Img(count($arImageList) - 1,false);
 				$outputCode .= '<div class="image">';
 				$outputCode .= '<img class="thumbnailImg" src="'.$arImageList[$randaomIndex].'" data-postID="'.$post_id.'" data-slideNumber="'.($k+1).'" data-ImageCount="'.count($arImageList).'">';
 				$outputCode .= '</div>';
 				
+				if($k == 0){
+					break;
+				}
 			}
 			
 			$outputCode .= '</div><!-- block -->';
@@ -476,7 +482,6 @@ function genTopThumnail() {
 		$outputCode .= '</div>';
 	}
 	$outputCode .= '</div>';
-	
 
 	echo $outputCode;
 	die();
@@ -544,7 +549,7 @@ function getRandomNumber4Block(int $maxNumber, bool $reset = false) {
     // Initialize and shuffle the array if it's empty
     if (empty($numbers4Block)) {
 //		var_dump("shuffle");
-        $numbers4Block = range(0, $maxNumber);
+        $numbers4Block = range(1, $maxNumber );
         shuffle($numbers4Block);
     }
     

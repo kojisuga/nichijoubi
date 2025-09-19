@@ -23,6 +23,10 @@ if ( have_posts() ) {
 		$commitment = get_field('commitment');
 		$message  = get_field('message');
 		$profile = get_field('profile');
+		$conceptJP  = get_field('conceptJP');
+		$commitmentJP = get_field('commitmentJP');
+		$messageJP  = get_field('messageJP');
+		$profileJP = get_field('profileJP');
 
 		if( have_rows('imageList') ):
 			
@@ -48,6 +52,24 @@ if ( have_posts() ) {
 		
 		endif;
 ?>
+
+<script>
+
+	
+jQuery(document).ready(function($) {
+	const viewportHeight = window.innerHeight;
+	const targetHeight = $(".exhibitorInfo > .captionArea").height();
+
+	console.log(viewportHeight);
+	console.log(targetHeight);
+
+	if(viewportHeight < targetHeight){
+		$(".exhibitorInfo > .captionArea").css("position","initial");
+	}
+});
+
+</script>
+
 		<link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/css/singleExhibitor.css?<?php echo file_date(get_template_directory() . '/css/singleExhibitor.css'); ?>" type="text/css" />
 		
 
@@ -92,21 +114,32 @@ if ( have_posts() ) {
 				</div>
 			</div><!-- partsWrapper -->
 <?php if($concept){?>
-			<div class="caption fadeIn" id="concept">
+			<div class="caption fadeIn langTW" id="concept">
 				<div class="title">創作理念</div>
 				<div class="text"><?php echo $concept; ?></div>
 			</div><!-- caption -->
-<?php } ?>			
+			<div class="caption fadeIn langJP" id="concept">
+				<div class="title">コンセプト</div>
+				<div class="text"><?php echo $conceptJP; ?></div>
+			</div><!-- caption --><?php } ?>			
 <?php if($message){?>
-			<div class="caption fadeIn" id="message">
+			<div class="caption fadeIn langTW" id="message">
 				<div class="title">想對購買我作品的人說的話 </div>
 				<div class="text"><?php echo $message; ?></div>
 			</div><!-- caption -->
+			<div class="caption fadeIn langJP" id="message">
+				<div class="title">作品を手に取ってくださる方に伝えたいこと </div>
+				<div class="text"><?php echo $messageJP; ?></div>
+			</div><!-- caption -->
 <?php } ?>			
 <?php if($commitment){?>
-			<div class="caption fadeIn" id="commitment">
+			<div class="caption fadeIn langTW" id="commitment">
 				<div class="title">對「產品」的用心與講究</div>
 				<div class="text"><?php echo $commitment; ?></div>
+			</div><!-- caption -->
+			<div class="caption fadeIn langJP" id="commitment">
+				<div class="title">ものづくりに対する想いやこだわり</div>
+				<div class="text"><?php echo $commitmentJP; ?></div>
 			</div><!-- caption -->
 <?php } ?>			
 
@@ -170,9 +203,13 @@ if ( have_posts() ) {
 
 					<img src="">
 				</div><!-- image -->
-				<div class="captionArea">
+				<div class="captionArea langTW">
 					<?php echo $profile; ?>
 				</div><!-- captionArea -->
+				<div class="captionArea langJP">
+					<?php echo $profileJP; ?>
+				</div><!-- captionArea -->
+	
 	
 			</div><!-- substance -->
 		</div><!-- profile -->
@@ -200,6 +237,7 @@ echo			'<div class="title">support exhibitor</div>';
 				$genre = get_sub_field('genre');
 				$url = get_sub_field('url');
 				$concept = get_sub_field('concept');
+				$conceptJP = get_sub_field('conceptJP');
 				$instagramAccount = get_sub_field('instagramAccount');
 				$instagramUrl = get_sub_field('instagramUrl');
 				$mailAdress =  get_sub_field('mail');
@@ -253,8 +291,11 @@ echo			'<div class="title">support exhibitor</div>';
 									<?php echo $mailAdress; ?>
 								</div>
 							</div>
-							<div class="parts concept">
+							<div class="parts concept langTW">
 								<?php echo $concept?>
+							</div>
+							<div class="parts concept langJP">
+								<?php echo $conceptJP?>
 							</div>
 
 

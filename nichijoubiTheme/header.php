@@ -8,14 +8,6 @@
 <!--〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓-->
 <script>
 // OnClick
-
-var $Menuflag = "CLOSE";
-
-$(function(){
-
-	
-	
-});
 </script>
 
 <!--〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓-->
@@ -24,21 +16,18 @@ $(function(){
 
 <?php
 	$home = home_url();
-	$current =  ($_SERVER["HTTP_HOST"] . $_SERVER["REQUEST_URI"]);
+
+	$fullUrl = 'https://' . $_SERVER["HTTP_HOST"] . $_SERVER["REQUEST_URI"];
+	
+	// URLパラメータを外す
+	$current = str_replace("lang=JP", "", $fullUrl);
+	$current = str_replace("lang=TW", "", $current);
+
+
 	if("/"==substr($current,strlen($current)-1,1)){
 		$current = substr($current,0,strlen($current)-1);
 	}
 
-	if(strstr($home,$current)){
-	// TOPページ用
-		
-
-	}
-	else{
-	// TOPページ意外
-
-
-	}
 
 ?>
 <div class="menu pcDisp">
@@ -47,28 +36,50 @@ $(function(){
 			<img src="<?php echo get_template_directory_uri(); ?>/image/common/nichijoubi_logo_bk.png">
 		</div>
 		<div class="menuListWrapper">
+
 			<a class="aLink" href="<?php echo get_home_url() ?>/"><div class="list">top</div></a>
-			<a class="aLink" href="<?php echo get_home_url() ?>/#about"><div class="list">about</div></a>
-			<a class="aLink" href="<?php echo get_home_url() ?>/#exhibitor"><div class="list">exhibitor</div></a>
-			<a class="aLink" href="<?php echo get_home_url() ?>/#contact"><div class="list">contact</div></a>
+			<a class="aLink" href="<?php echo get_home_url() ?>/?page=about"><div class="list">about</div></a>
+			<a class="aLink" href="<?php echo get_home_url() ?>/?page=exhibitor"><div class="list">exhibitor</div></a>
+			<a class="aLink" href="<?php echo get_home_url() ?>/?page=contact"><div class="list">contact</div></a>
 		</div><!-- menuListWrapper -->
 		<div class="lang">
 			<div class="label">Lang</div>
 			
 			<div class="btnWrapper">
-				<div class="btn">JP</div> / 
-				<div class="btn">TW</div> / 
-				<div class="btn">EN</div>
+<?php 
+$langURL = $current_url."?lang=JP";
+?>
+				<a href="<?php echo $langURL;?>"><div class="btn">JP</div></a> / 
+<?php 
+$langURL = $current_url."?lang=TW";
+?>
+				<a href="<?php echo $langURL;?>"><div class="btn">TW</div></a> 
 			</div><!-- background -->
 		</div>
+		
+		<div class="snsArea">
+			<a href="https://www.instagram.com/nichijoubi_/?utm_source=ig_web_button_share_sheet">
+				<div class="icon"><img src="<?php echo get_template_directory_uri(); ?>/image/common/icon_insta.png"></div>
+				<div class="list hide">instagram</div>
+			</a>
+			<a href="https://www.instagram.com/nichijoubi_/?utm_source=ig_web_button_share_sheet">
+				<div class="icon"><img src="<?php echo get_template_directory_uri(); ?>/image/common/icon_fb.png"></div>
+				<div class="list hide">facebook</div>
+			</a>
+		</div>
 
-		<div class="sArea">
+		<div class="sArea hide">
 			<div class="logo">
 				<img src="<?php echo get_template_directory_uri(); ?>/image/common/shimasakuLogo.png">
 			</div>
 			<div class="info">
 				<div class="period">
-					<div class="day">
+					<div class="day langTW">
+						11/21(五) <br>
+						11/22(六) <br>
+						11/23(日) <br>
+					</div>
+					<div class="day langJP">
 						11/21(金) <br>
 						11/22(土) <br>
 						11/23(日) <br>
@@ -124,10 +135,64 @@ $(function(){
 	<div class="base">
 		<div class="menuListWrapper">
 			<a class="aLink" href="<?php echo get_home_url() ?>/"><div class="list">top</div></a>
-			<a class="aLink" href="<?php echo get_home_url() ?>/#about"><div class="list">about</div></a>
-			<a class="aLink" href="<?php echo get_home_url() ?>/#exhibitor"><div class="list">exhibitor</div></a>
-			<a class="aLink" href="<?php echo get_home_url() ?>/#contact"><div class="list">contact</div></a>
+			<a class="aLink" href="<?php echo get_home_url() ?>/?page=about"><div class="list">about</div></a>
+			<a class="aLink" href="<?php echo get_home_url() ?>/?page=exhibitor"><div class="list">exhibitor</div></a>
+			<a class="aLink" href="<?php echo get_home_url() ?>/?page=contact"><div class="list">contact</div></a>
 		</div><!-- menuListWrapper -->
+
+		<div class="lang">
+			<div class="label">Lang</div>
+			
+			<div class="btnWrapper">
+<?php 
+$langURL = $current_url."?lang=JP";
+?>
+				<a href="<?php echo $langURL;?>"><div class="btn">JP</div></a> / 
+<?php 
+$langURL = $current_url."?lang=TW";
+?>
+				<a href="<?php echo $langURL;?>"><div class="btn">TW</div></a> 
+			</div><!-- background -->
+		</div>
+
+		<div class="sArea">
+			<div class="logo">
+				<img src="<?php echo get_template_directory_uri(); ?>/image/common/shimasakuLogo.png">
+			</div>
+			<div class="info">
+				<div class="period">
+					<div class="day langTW">
+						11/21(五) <br>
+						11/22(六) <br>
+						11/23(日) <br>
+					</div>
+					<div class="day langJP">
+						11/21(金) <br>
+						11/22(土) <br>
+						11/23(日) <br>
+					</div>
+					<div class="time">
+						10:30 - 17:30
+					</div>
+				</div>
+				<div class="place">
+					松山文創園區<br>
+					北向製菸工廠
+				</div>
+			</div>
+		</div><!-- sArea -->
+
+		<div class="snsArea ">
+			<a href="https://www.instagram.com/nichijoubi_/?utm_source=ig_web_button_share_sheet">
+				<div class="icon"><img src="<?php echo get_template_directory_uri(); ?>/image/common/icon_insta.png"></div>
+				<div class="list hide">instagram</div>
+			</a>
+			<a href="https://www.instagram.com/nichijoubi_/?utm_source=ig_web_button_share_sheet">
+				<div class="icon"><img src="<?php echo get_template_directory_uri(); ?>/image/common/icon_fb.png"></div>
+				<div class="list hide">facebook</div>
+			</a>
+		</div><!-- snsArea -->
+
 	</div><!-- base -->
 
 	<div class="btn">

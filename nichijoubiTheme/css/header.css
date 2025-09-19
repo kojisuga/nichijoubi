@@ -8,7 +8,7 @@
 .menu > .background {
     height: 100vh;
     padding: 20px;
-    width: 180px;
+    width: 220px;
     padding-top: 70px;
     text-align: center;
 }
@@ -45,9 +45,26 @@
 	display: inline-block;
 	font-size: 70%;
 }
-.lang > .btnWrapper > .btn{
+.lang > .btnWrapper .btn{
 	display: inline-block;
 }
+.snsArea{
+	position: absolute;
+    bottom: 80px;
+    width: 100%;
+}
+.snsArea .icon{
+	display:inline-block;
+	margin-right: 10px;
+	
+}
+.snsArea .icon img{
+	width:30px;
+}
+.snsArea .list{
+	display:inline-block;
+}
+
 
 .sArea{
 	position: absolute;
@@ -93,6 +110,7 @@
 		opacity: 0;
 		background: white;
 		overflow: hidden;
+        position: relative;
 	
 		/* for animation */
 		-webkit-transition: all 1s;
@@ -105,9 +123,10 @@
 		text-align: left;
 		margin-top: 30px;
 		margin-left: 30px;
-		font-size: 150%;
+		font-size: 120%;
 	}
-	.openMenu > .base > .menuListWrapper > .list{
+	.openMenu > .base > .menuListWrapper .list{
+		margin-bottom:10px;
 		
 	}
 	.openMenu > .btn{
@@ -141,6 +160,31 @@
 		-o-transform: translate(0px,-2px) rotate(-45deg);
 		-ms-transform: translate(0px,-2px) rotate(-45deg);
 		transform: translate(0px,-2px) rotate(-45deg);
+	}
+	.sArea{
+		position: absolute;
+        top: calc(100vh);
+        display: inline-block;
+        text-align: LEFT;
+        width: 200px;
+        height: 260px;
+        left: 40PX;
+        transform: translateY(calc(-100% - 30px));
+	}
+	.snsArea{
+		bottom: initial;
+		top: 100vh;
+		transform: translate(calc(-100% - 10px), calc(-100% - 30px));
+		display: inline-block;
+		left: 100%;
+		width: 120px;
+	}
+	.lang {
+		display: inline-block;
+		position: absolute;
+		top: 40px;
+		right: 10px;
+		text-align: center;
 	}
 
 }
