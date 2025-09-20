@@ -110,7 +110,15 @@ $(function(){
 			$Menuflag = "OPEN";
 			console.log("open");
 			// Menuバーのスライド
-			$(".base").css("height","100vh");
+
+			// 描画領域の高さを取得
+			const viewportHeight = window.innerHeight;
+		
+			// .base 要素に高さを設定
+			$(".base").css("height", viewportHeight + "px");
+			$(".base .sArea").css("top", viewportHeight + "px");
+			$(".base .snsArea").css("top", viewportHeight + "px");
+
 			$(".base").css("opacity","1");
 			$("#bar1").addClass("rotate45");
 			$("#bar3").addClass("rotate_45");
@@ -141,7 +149,7 @@ $(function(){
 		</div><!-- menuListWrapper -->
 
 		<div class="lang">
-			<div class="label">Lang</div>
+			<div class="label">language</div>
 			
 			<div class="btnWrapper">
 <?php 
@@ -182,12 +190,12 @@ $langURL = $current_url."?lang=TW";
 			</div>
 		</div><!-- sArea -->
 
-		<div class="snsArea ">
+		<div class="snsArea hide">
 			<a href="https://www.instagram.com/nichijoubi_/?utm_source=ig_web_button_share_sheet">
 				<div class="icon"><img src="<?php echo get_template_directory_uri(); ?>/image/common/icon_insta.png"></div>
 				<div class="list hide">instagram</div>
 			</a>
-			<a href="https://www.instagram.com/nichijoubi_/?utm_source=ig_web_button_share_sheet">
+			<a href="https://www.facebook.com/share/1gSjfB4v8Y/?mibextid=LQQJ4">
 				<div class="icon"><img src="<?php echo get_template_directory_uri(); ?>/image/common/icon_fb.png"></div>
 				<div class="list hide">facebook</div>
 			</a>

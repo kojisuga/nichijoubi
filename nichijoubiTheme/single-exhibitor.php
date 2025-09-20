@@ -9,12 +9,8 @@ if ( have_posts() ) {
 		$exhibitor_name = get_field('exhibitorName');
         $brand_name = get_field('brandName');
 
-		if($brand_name){
-			if($exhibitor_name){
-				$brand_name = " (" . $brand_name. ")";
-			}
-		}
         $genre = get_field('genre');
+        $genreJP = get_field('genreJP');
         $url = get_field('url');
 		$instagramAccount = get_field('instagramAccount');
 		$instagramUrl = get_field('instagramUrl');
@@ -83,52 +79,47 @@ jQuery(document).ready(function($) {
 	<div class="exhibitorInfo">
 		<div class="captionArea ">
 			<div class="partsWrapper ">
+<?php if($exhibitor_name){ ?>
 				<div class="parts fadeIn">
-					<div class="data">
-						<?php echo $exhibitor_name.$brand_name." — ".$genre; ?>
+					<div class="data artName">
+						<?php echo $exhibitor_name; ?>
 					</div>
 				</div>
+<?php } ?>
+<?php if($brand_name){ ?>
 				<div class="parts fadeIn">
-					<div class="label">
-						<img src="<?php echo get_template_directory_uri(); ?>/image/common/icon/iconWeb.png">
-					</div>
-					<div class="data">
-						<?php echo '<a href="'. $url .'" target="_blank">'. $url .'</a>'; ?>
+					<div class="data brandName">
+						<?php echo $brand_name; ?>
 					</div>
 				</div>
+<?php } ?>
+<?php if($genre){ ?>
 				<div class="parts fadeIn">
-					<div class="label">
-						<img src="<?php echo get_template_directory_uri(); ?>/image/common/icon/iconSns.png">
+					<div class="data langTW">
+						<?php echo $genre; ?>
 					</div>
-					<div class="data">
-						<?php echo '<a href="'. $instagramUrl .'" target="_blank"> '. $instagramAccount .'</a>';?>
+					<div class="data langJP">
+						<?php echo $genreJP; ?>
 					</div>
 				</div>
-				<div class="parts fadeIn">
-					<div class="label">
-						<img src="<?php echo get_template_directory_uri(); ?>/image/common/icon/iconMail.png">
-					</div>
-					<div class="data">
-						<?php echo $mailAdress; ?>
-					</div>
-				</div>
+<?php } ?>
 			</div><!-- partsWrapper -->
 <?php if($concept){?>
 			<div class="caption fadeIn langTW" id="concept">
-				<div class="title">創作理念</div>
+<!--				<div class="title">創作理念</div>	-->
 				<div class="text"><?php echo $concept; ?></div>
 			</div><!-- caption -->
 			<div class="caption fadeIn langJP" id="concept">
-				<div class="title">コンセプト</div>
+<!--				<div class="title">コンセプト</div>	-->
 				<div class="text"><?php echo $conceptJP; ?></div>
 			</div><!-- caption --><?php } ?>			
 <?php if($message){?>
 			<div class="caption fadeIn langTW" id="message">
-				<div class="title">想對購買我作品的人說的話 </div>
+				<div class="title">致拿起作品的您 </div>
 				<div class="text"><?php echo $message; ?></div>
 			</div><!-- caption -->
 			<div class="caption fadeIn langJP" id="message">
-				<div class="title">作品を手に取ってくださる方に伝えたいこと </div>
+				<div class="title">作品を手に取ってくださる方へ </div>
 				<div class="text"><?php echo $messageJP; ?></div>
 			</div><!-- caption -->
 <?php } ?>			
@@ -141,7 +132,7 @@ jQuery(document).ready(function($) {
 				<div class="title">ものづくりに対する想いやこだわり</div>
 				<div class="text"><?php echo $commitmentJP; ?></div>
 			</div><!-- caption -->
-<?php } ?>			
+<?php } ?>		
 
 		</div><!-- captionArea -->
 		<div class="imageArea">
@@ -205,9 +196,77 @@ jQuery(document).ready(function($) {
 				</div><!-- image -->
 				<div class="captionArea langTW">
 					<?php echo $profile; ?>
+<div class="partsWrapper ">
+
+<?php if($url){?>
+				<div class="parts fadeIn">
+					<div class="label">
+						<img src="<?php echo get_template_directory_uri(); ?>/image/common/icon/iconWeb.png">
+					</div>
+					<div class="data">
+						<?php echo '<a href="'. $url .'" target="_blank">'. $url .'</a>'; ?>
+					</div>
+				</div>
+
+<?php }?>
+<?php if($instagramUrl){?>
+				<div class="parts fadeIn">
+					<div class="label">
+						<img src="<?php echo get_template_directory_uri(); ?>/image/common/icon/iconSns.png">
+					</div>
+					<div class="data">
+						<?php echo '<a href="'. $instagramUrl .'" target="_blank"> '. $instagramAccount .'</a>';?>
+					</div>
+				</div>
+<?php }?>
+<?php if($mailAdress){?>
+				<div class="parts fadeIn">
+					<div class="label">
+						<img src="<?php echo get_template_directory_uri(); ?>/image/common/icon/iconMail.png">
+					</div>
+					<div class="data">
+						<?php echo $mailAdress; ?>
+					</div>
+				</div>
+<?php }?>
+			</div><!-- partsWrapper -->
 				</div><!-- captionArea -->
 				<div class="captionArea langJP">
 					<?php echo $profileJP; ?>
+<div class="partsWrapper ">
+
+<?php if($url){?>
+				<div class="parts fadeIn">
+					<div class="label">
+						<img src="<?php echo get_template_directory_uri(); ?>/image/common/icon/iconWeb.png">
+					</div>
+					<div class="data">
+						<?php echo '<a href="'. $url .'" target="_blank">'. $url .'</a>'; ?>
+					</div>
+				</div>
+
+<?php }?>
+<?php if($instagramUrl){?>
+				<div class="parts fadeIn">
+					<div class="label">
+						<img src="<?php echo get_template_directory_uri(); ?>/image/common/icon/iconSns.png">
+					</div>
+					<div class="data">
+						<?php echo '<a href="'. $instagramUrl .'" target="_blank"> '. $instagramAccount .'</a>';?>
+					</div>
+				</div>
+<?php }?>
+<?php if($mailAdress){?>
+				<div class="parts fadeIn">
+					<div class="label">
+						<img src="<?php echo get_template_directory_uri(); ?>/image/common/icon/iconMail.png">
+					</div>
+					<div class="data">
+						<?php echo $mailAdress; ?>
+					</div>
+				</div>
+<?php }?>
+			</div><!-- partsWrapper -->
 				</div><!-- captionArea -->
 	
 	
@@ -235,6 +294,7 @@ echo			'<div class="title">support exhibitor</div>';
 					}
 				}
 				$genre = get_sub_field('genre');
+				$genreJP = get_sub_field('genreJP');
 				$url = get_sub_field('url');
 				$concept = get_sub_field('concept');
 				$conceptJP = get_sub_field('conceptJP');
@@ -264,9 +324,31 @@ echo			'<div class="title">support exhibitor</div>';
 		
 							<div class="parts exhibitorName">
 								<div class="data">
-									<?php echo $exhibitorName.$brandName." — ".$genre; ?>
+									<?php echo $exhibitorName; ?>
 								</div>
 							</div>
+							<div class="parts exhibitorName">
+								<div class="data">
+									<?php echo $brandName; ?>
+								</div>
+							</div>
+							<div class="parts exhibitorName">
+								<div class="data langTW">
+									<?php echo $genre; ?>
+								</div>
+								<div class="data langJP">
+									<?php echo $genreJP; ?>
+								</div>
+
+							</div>
+
+							<div class="parts concept langTW">
+								<?php echo $concept?>
+							</div>
+							<div class="parts concept langJP">
+								<?php echo $conceptJP?>
+							</div>
+<?php if($url){ ?>
 							<div class="parts ">
 								<div class="label">
 									<img src="<?php echo get_template_directory_uri(); ?>/image/common/icon/iconWeb.png">
@@ -275,6 +357,9 @@ echo			'<div class="title">support exhibitor</div>';
 									<?php echo '<a href="'. $url .'" target="_blank">'. $url .'</a>'; ?>
 								</div>
 							</div>
+<?php } ?>
+<?php if($instagramUrl){ ?>
+
 							<div class="parts ">
 								<div class="label">
 									<img src="<?php echo get_template_directory_uri(); ?>/image/common/icon/iconSns.png">
@@ -283,6 +368,8 @@ echo			'<div class="title">support exhibitor</div>';
 									<?php echo '<a href="'. $instagramUrl .'" target="_blank"> '. $instagramAccount .'</a>';?>
 								</div>
 							</div>
+<?php } ?>
+<?php if($mailAdress){ ?>
 							<div class="parts ">
 								<div class="label">
 									<img src="<?php echo get_template_directory_uri(); ?>/image/common/icon/iconMail.png">
@@ -291,13 +378,7 @@ echo			'<div class="title">support exhibitor</div>';
 									<?php echo $mailAdress; ?>
 								</div>
 							</div>
-							<div class="parts concept langTW">
-								<?php echo $concept?>
-							</div>
-							<div class="parts concept langJP">
-								<?php echo $conceptJP?>
-							</div>
-
+<?php } ?>
 
 		
 

@@ -93,7 +93,7 @@ html{
 }
 #about > .logo > .image{
 	width:100%;
-    margin-bottom: 15px;
+    margin-bottom: 25px;
 }
 #about > .logo > .image img{
 	width:90px;
@@ -116,6 +116,7 @@ html{
 }
 #about > .message > .concept{
     text-align: left;
+    margin-bottom: 75px;
 }
 #about > .message >  .vertical{
 	writing-mode: vertical-rl;
@@ -239,7 +240,7 @@ html{
 	padding-top: 100px;
     display: inline-block;
     text-align: left;
-    margin-bottom: 15px;
+    margin-bottom: 25px;
 }
 #exhibition > .captionArea> .logo{
 	display:inline-block;
@@ -247,7 +248,7 @@ html{
     margin-right: 30px;
 }
 #exhibition > .captionArea> .logo img{
-    width: 200px;
+    width: 120px;
 }
 #exhibition > .captionArea > .caption{
 	display:inline-block;
@@ -303,7 +304,16 @@ display: inline-block;
 #contact > .formArea > .contactForm > .parts > .data{
 
 }
+#contact > .formArea > .contactResultSucess{
 
+}
+#contact > .formArea > .contactResultSucess > .text{
+
+}
+
+display: inline-block;
+    text-align: left;
+}
 /* form style*/
 input.text {
     width: 400px;
@@ -421,6 +431,7 @@ button {
 	}
 	#about > .logo {
 		text-align: center;
+        margin-bottom: 65px;
 	}
 	
 	#about > .logo > .image img{

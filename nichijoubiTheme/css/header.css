@@ -182,9 +182,12 @@
 	.lang {
 		display: inline-block;
 		position: absolute;
-		top: 40px;
-		right: 10px;
+		top: 50px;
+		right: 30px;
 		text-align: center;
 	}
-
+	.lang > .btnWrapper {
+		display: inline-block;
+		font-size: 100%;
+	}
 }

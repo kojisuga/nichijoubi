@@ -378,6 +378,120 @@ add_action( 'wp_head', 'add_my_ajaxurl', 1 );
  */
 function genTopThumnail() {
 
+
+	$outputCode = "";
+
+	$width = $_POST['width'];
+	$height = $_POST['height'];
+	$keyImageWidth = $_POST['keyImageWidth'];
+	
+	// 投稿データの取得
+	$args = array(
+		'post_type'      => 'post', // 投稿タイプを指定
+		'category_name'  => 'exhibitor', // カテゴリのスラッグ
+		'posts_per_page' => -1, // 全ての投稿を取得
+	);
+	
+	// 新しいWP_Queryインスタンスを作成
+	$exhibitor_posts = new WP_Query($args);
+	
+	// 投稿IDを格納するための空の配列を初期化
+	$arPostID = array();
+	$arRandomIndex = array();
+	// ループ開始
+	if ($exhibitor_posts->have_posts()) {
+		while ($exhibitor_posts->have_posts()) {
+			$exhibitor_posts->the_post();
+	
+			// 現在の投稿IDを配列に順次追加
+			$arPostID[] = get_the_ID();
+	
+			// ここに投稿の表示処理（例：タイトル、抜粋など）を記述
+			// ※ この部分を省略してIDの取得だけに特化することも可能です
+		}
+		// メインクエリをリセット
+		wp_reset_postdata();
+	} else {
+		// 投稿が見つからなかった場合の処理
+		echo '該当する投稿は見つかりませんでした。';
+	}
+
+	// for test
+$arblockSerialNumber = array();
+	// line数を決定
+	$lineNumber = intval($width / $keyImageWidth);
+	// block数を決定
+	$blockNumber =  ceil($height / ( ($keyImageWidth * 0.6666) + 20 )) ;
+
+$debutText.="width:".$width." $height: ".$height."keyImageWidth ".$keyImageWidth."</br>";
+
+$debutText.="LineNumber:".$lineNumber." blockNumber: ".$blockNumber."</br>";
+
+	$outputCode .= '<div class="thumbnailWrapper">';
+
+	for($i = 0; $i < $lineNumber; $i++){
+		$outputCode .= '<div class="linePats">';
+
+		for($j = 0; $j < $blockNumber; $j++){
+
+			$blockSerialNumber = getRandomNumber4Block($blockNumber*$lineNumber);
+$arblockSerialNumber[]=$blockSerialNumber;
+			$randumIndex = getRandomNumber4Post(count($arPostID) -1);
+			
+			$arRandomIndex[] = $randumIndex;
+
+			$post_id = $arPostID[$randumIndex]; // 例: 投稿IDが123の場合
+			$post_url = get_permalink($post_id);
+			$outputCode .= '<a class="aLink" href="'.$post_url.'">';
+			$outputCode .= '<div class="block" data-blockSerialNumber="'.$blockSerialNumber.'" data-viewImageNumber="1" >';
+
+			// テキストフィールドの値を取得
+			$exhibitor_name = get_field('exhibitorName', $post_id);
+			$brand_name = get_field('brandName', $post_id);
+			$profile = get_field('profile', $post_id);
+
+			// 取得した値を使って何かを出力
+
+			$arImageList = array();
+			// 繰り返しフィールドの値を取得
+			if ( have_rows('imageList', $post_id) ) {
+				while ( have_rows('imageList', $post_id) ) {
+					the_row();
+					// サブフィールドの画像フィールドの値を取得
+					$image = get_sub_field('image');
+					$arImageList[] = $image;
+				}
+			}
+			getRandomNumber4Img(count($arImageList) - 1,true);
+
+			for ($k = 4; $k >= 0; $k--) {
+				$randaomIndex = getRandomNumber4Img(count($arImageList) - 1,false);
+				$outputCode .= '<div class="image">';
+				$outputCode .= '<img class="thumbnailImg" src="'.$arImageList[$randaomIndex].'" data-postID="'.$post_id.'" data-slideNumber="'.($k+1).'" data-ImageCount="'.count($arImageList).'">';
+				$outputCode .= '</div>';
+				
+				if($k == 0){
+					break;
+				}
+			}
+			
+			$outputCode .= '</div><!-- block -->';
+			$outputCode .= '</a>';
+
+		}
+
+		$outputCode .= '</div>';
+	}
+
+	$outputCode .= '</div>';
+
+	echo $outputCode;
+
+	die();
+}
+
+function genTopThumnail_old() 
+{
 	$outputCode = "";
 
 	$width = $_POST['width'];
@@ -569,6 +683,52 @@ function enqueue_my_scripts() {
 	));
 }
 add_action('wp_enqueue_scripts', 'enqueue_my_scripts');
+
+function my_enqueue_scripts() {
+    wp_enqueue_script('my-contact-script', get_template_directory_uri() . '/js/your-contact-script.js', array('jquery'), null, true);
+    wp_localize_script('my-contact-script', 'my_ajax_object', array('ajax_url' => admin_url('admin-ajax.php')));
+}
+add_action('wp_enqueue_scripts', 'my_enqueue_scripts');
+
+/**
+ * Ajaxリクエストを処理してメールを送信する関数
+ */
+function send_contact_form_email() {
+    // セキュリティチェック（Nonceの検証）
+    if ( !isset($_POST['nonce']) || !wp_verify_nonce($_POST['nonce'], 'contact_form_nonce') ) {
+        wp_send_json_error('Invalid nonce.');
+        wp_die();
+    }
+
+    // フォームデータの取得とサニタイズ
+    $c_name = sanitize_text_field($_POST['cName']);
+    $c_mail = sanitize_email($_POST['mail']);
+    $c_message = sanitize_textarea_field($_POST['message']);
+
+    // 必須フィールドのチェック
+    if ( empty($c_name) || empty($c_mail) || empty($c_message) ) {
+        wp_send_json_error('Missing required fields.');
+        wp_die();
+    }
+
+    // メール設定
+    $to = 'contact@nichijoubi.com';
+    $subject = 'ウェブサイトのお問い合わせ: ' . $c_name;
+    $body = "お名前: {$c_name}\n";
+    $body .= "メールアドレス: {$c_mail}\n";
+    $body .= "メッセージ:\n{$c_message}\n";
+    $headers = array('Content-Type: text/plain; charset=UTF-8', "Reply-To: {$c_name} <{$c_mail}>");
+
+    // wp_mail() 関数でメールを送信
+    if ( wp_mail($to, $subject, $body, $headers) ) {
+        wp_send_json_success('Mail sent successfully!');
+    } else {
+        wp_send_json_error('Mail failed to send.');
+    }
+}
+// ログインユーザーと非ログインユーザーの両方に対応するフックを登録
+add_action('wp_ajax_send_form', 'send_contact_form_email');
+add_action('wp_ajax_nopriv_send_form', 'send_contact_form_email');
 
 // 管理バーを非表示にする
 add_filter('show_admin_bar', '__return_false');

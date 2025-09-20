@@ -41,9 +41,58 @@ jQuery(document).ready(function($) {
 		success: function( response ){
 			$('#top').prepend(response);
 			viewThumbnail();
-			
+
+			targetTxt = $("#pageTarget").text();
+			console.log(targetTxt);
+			bodyChange_y = 0;
+			if("about"==targetTxt){
+				bodyChange_y =$("#about").offset().top - 0;
+	
+			}
+			if("exhibitor"==targetTxt){
+				bodyChange_y =$("#exhibitorInfo").offset().top - 0;
+	
+			}
+			if("contact"==targetTxt){
+				bodyChange_y =$("#contact").offset().top - 0;
+	
+			}
+			if( bodyChange_y > 0 ){
+				$("body,html").animate({scrollTop:bodyChange_y},500);
+			}
 		}
 	});	
+
+   $('.contactForm').on('submit', function(e) {
+        e.preventDefault(); // デフォルトのフォーム送信を停止
+
+        // フォームデータを取得
+        const formData = $(this).serialize();
+        const nonce = $(this).find('input[name="contact_nonce"]').val();
+
+        // Ajaxリクエストを送信
+        $.ajax({
+            type: 'POST',
+            url: ajaxurl, // wp_localize_scriptで定義したURL
+            data: formData + '&action=send_form' + '&nonce=' + nonce,
+            dataType: 'json',
+            success: function(response) {
+                if (response.success) {
+                    alert('メッセージが送信されました。');
+                    $('.contactForm')[0].reset(); // フォームをリセット
+					$(".contactForm").addClass("hide");
+					$(".contactResultSucess").removeClass("hide");
+                } else {
+                    alert('エラーが発生しました: ' + response.data);
+                }
+            },
+            error: function(xhr, status, error) {
+                alert('通信エラーが発生しました。');
+                console.error('AJAX Error:', error);
+            }
+        });
+		return false;
+    });
 
 });
 
@@ -208,6 +257,7 @@ $('.block').each(function() {
 <body>
 <?php require "header.php"; ?> 																	<!-- Call common.php ---->
 
+
 <div class="pageWrapper">
 	<div class="contentsWrapper">
 		<div class="contents" id="top">
@@ -260,10 +310,19 @@ $('.block').each(function() {
 					<br>
 					私たちはそんな暮らしを目指すものづくりをしています。<br>
 				</div>
+				<div class=" langTW concept">
+					日常美是一個承襲日本細緻手工與傳統的職人團體。
+					我們將於2025年11月參加「島作」展出。
+					非常期待與台灣的各位見面。
+				</div>
 
+				<div class=" langJP concept">
+					日常美は、日本の丁寧な手仕事、伝統を受け継ぐ作り手の集まりです。
+					私たちは2025年11月に「島作」に出展いたします。
+					台湾の皆さまとお会いできるのをとても楽しみにしています。
+				</div>
 			</div>
 		</div><!-- contents about -->
-
 
 		<div class="contents" id="exhibitorInfo">
 			<div class="title fadeIn langJP">
@@ -319,6 +378,7 @@ if(($exhibitorName)&&($brandName)){
 			$brandName = "（".$brandName."）";
 }
 			$genre = get_field('genre');
+			$genreJP = get_field('genreJP');
 			
 			$post_url = get_permalink();
 			$is_virtual_author = has_tag('virtualauthor');
@@ -336,10 +396,12 @@ else{?>
 					<a class="aLink" href="<?php echo $post_url; ?>">
 <?php } ?>
 
-						<div class="genre">
+						<div class="genre langTW">
 							<?php echo $genre; ?>
 						</div>
-<?php if($exhibitorName){ ?>
+						<div class="genre langJP">
+							<?php echo $genreJP; ?>
+						</div><?php if($exhibitorName){ ?>
 						<div class="exhibitorName">
 							<?php echo $exhibitorName; ?>
 						</div>
@@ -360,6 +422,7 @@ if ( have_rows('subExhibitor') ) :
         $subExhibitorName = get_sub_field('exhibitorName');
         $subBrandName = get_sub_field('brandName');
         $subGenre = get_sub_field('genre');
+        $subGenreJP = get_sub_field('genreJP');
         $url = get_sub_field('url');
         $instagram = get_sub_field('instagram');
         $concept = get_sub_field('concept');
@@ -371,7 +434,8 @@ if ( have_rows('subExhibitor') ) :
 		echo '<a class="aLink" href="'.$post_url.'">';
 }
         // 取得したサブ出展者情報を表示
-		echo '<div class="genre">'. $subGenre . '　</div>';
+		echo '<div class="genre langTW">'. $subGenre . '　</div>';
+		echo '<div class="genre langJP">'. $subGenreJP . '　</div>';
 		echo '<div class="exhibitorName">'. $subExhibitorName. '</div>';
 if (( $subExhibitorName )&&($subBrandName) ){
 		$subBrandName = "（".$subBrandName."）";
@@ -475,6 +539,8 @@ endif; // End of subExhibitor check
 			</div>
 			<div class="formArea">
 				<form class="contactForm">
+<?php wp_nonce_field('contact_form_nonce', 'contact_nonce'); ?>
+
 					<div class="caption"></div>
 					<div class="parts">
 						<div class="label langTW">大名<!--your name--> *</div>
@@ -498,6 +564,17 @@ endif; // End of subExhibitor check
 					</div>
 				</form>
 			</div><!--formArea  -->
+
+			<div class="contactResultSucess hide">
+				<div class="text langJP">
+					お問合せが正常に行われました。
+					担当者が確認し折り返しご連絡しますので、いましばらくお待ちください。
+				</div>
+				<div class="text langTW">
+					您的諮詢已成功送出。  
+					負責人將會確認內容後與您聯絡，  
+					非常抱歉，請您稍待片刻。
+				</div>
 		</div><!-- contents contact -->
 	</div><!-- contentsWrapper -->
 </div><!-- pageWrapper -->

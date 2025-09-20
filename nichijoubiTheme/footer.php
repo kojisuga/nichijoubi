@@ -66,36 +66,24 @@ if($_GET['page']){
 	$naviPoint = $_GET['page'];
 
 	if("about" == $naviPoint){
+		echo '<div class="hide" id="pageTarget">about</div>';
+
 ?>
-	<script>
-		console.log("about");
-		bodyChange_y =$("#about").offset().top - 0;
-		if( bodyChange_y > 0 ){
-			$("body,html").animate({scrollTop:bodyChange_y},500);
-		}
-</script>
+
 <?php
 	}
 	else if("exhibitor" == $naviPoint){
+
+		echo '<div class="hide" id="pageTarget">exhibitor</div>';
 ?>
-	<script>
-		console.log("exhibitor");
-		bodyChange_y =$("#exhibitorInfo").offset().top - 500;
-		if( bodyChange_y > 0 ){
-		$("body,html").animate({scrollTop:bodyChange_y},500);
-		}
-	</script>
+
 <?php
 	}
 	else if("contact" == $naviPoint){
+		echo '<div class="hide" id="pageTarget">contact</div>';
+
 ?>
-	<script>
-		console.log("contact");
-		bodyChange_y =$("#contact").offset().top - 80;
-		if( bodyChange_y > 0 ){
-			$("body,html").animate({scrollTop:bodyChange_y},500);
-		}
-	</script>
+
 <?php
 	}
 	else{
@@ -105,7 +93,6 @@ if($_GET['page']){
 }
 
 ?>
-
 
 <!--〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓-->
 <!--Html----------------------------------------------------------------------------------------------------------------->
