@@ -380,7 +380,7 @@ function genTopThumnail() {
 
 
 	$outputCode = "";
-
+	$debugText = "";
 	$width = $_POST['width'];
 	$height = $_POST['height'];
 	$keyImageWidth = $_POST['keyImageWidth'];
@@ -423,9 +423,10 @@ function genTopThumnail() {
 	// block数を決定
 	$blockNumber =  ceil($height / ( ($keyImageWidth * 0.6666) + 20 )) ;
 
-$debutText.="width:".$width." $height: ".$height."keyImageWidth ".$keyImageWidth."</br>";
 
-$debutText.="LineNumber:".$lineNumber." blockNumber: ".$blockNumber."</br>";
+$debugText.="width:".$width." , height: ".$height.", keyImageWidth ".$keyImageWidth."</br>";
+
+$debugText.="LineNumber:".$lineNumber." blockNumber: ".$blockNumber."</br>";
 
 	$outputCode .= '<div class="thumbnailWrapper">';
 
@@ -474,12 +475,17 @@ $debutText.="LineNumber:".$lineNumber." blockNumber: ".$blockNumber."</br>";
 					$outputCode .= '<img class="thumbnailImg" src="'.$arImageList[$randaomIndex].'" data-postID="'.$post_id.'" data-slideNumber="'.($k+1).'" data-ImageCount="'.count($arImageList).'">';
 					$outputCode .= '</div>';
 				}
-
 				else{
-					if($userImageList[$exhibitor_name][0] != arImageList[$randaomIndex]){ // 重複してない
-						if($k == 4)){
+					if($k == 4){
+						if($userImageList[$exhibitor_name][0] != $arImageList[$randaomIndex]){ // 重複してない
 							$userImageList[$exhibitor_name][] = $arImageList[$randaomIndex];
+							$randaomIndex = getRandomNumber4Img(count($arImageList) - 1,false);
+							$outputCode .= '<div class="image">';
+							$outputCode .= '<img class="thumbnailImg" src="'.$arImageList[$randaomIndex].'" data-postID="'.$post_id.'" data-slideNumber="'.($k+1).'" data-ImageCount="'.count($arImageList).'">';
+							$outputCode .= '</div>';
 						}
+					}
+					else{
 						$randaomIndex = getRandomNumber4Img(count($arImageList) - 1,false);
 						$outputCode .= '<div class="image">';
 						$outputCode .= '<img class="thumbnailImg" src="'.$arImageList[$randaomIndex].'" data-postID="'.$post_id.'" data-slideNumber="'.($k+1).'" data-ImageCount="'.count($arImageList).'">';
@@ -491,16 +497,6 @@ $debutText.="LineNumber:".$lineNumber." blockNumber: ".$blockNumber."</br>";
 			}while( ( $k >= 0) );
 
 
-			for ($k = 4; $k >= 0; $k--) {
-				$randaomIndex = getRandomNumber4Img(count($arImageList) - 1,false);
-				$outputCode .= '<div class="image">';
-				$outputCode .= '<img class="thumbnailImg" src="'.$arImageList[$randaomIndex].'" data-postID="'.$post_id.'" data-slideNumber="'.($k+1).'" data-ImageCount="'.count($arImageList).'">';
-				$outputCode .= '</div>';
-				
-				if($k == 0){
-					break;
-				}
-			}
 			
 			$outputCode .= '</div><!-- block -->';
 			$outputCode .= '</a>';
@@ -509,7 +505,9 @@ $debutText.="LineNumber:".$lineNumber." blockNumber: ".$blockNumber."</br>";
 
 		$outputCode .= '</div>';
 	}
-		var_dump($userImageList);
+
+//	var_dump($debugText);
+
 
 	$outputCode .= '</div>';
 

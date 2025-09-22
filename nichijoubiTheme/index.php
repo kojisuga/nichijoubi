@@ -11,9 +11,16 @@
 <script>
 jQuery(document).ready(function($) {
     // 画面サイズを取得
+	viewportWidth= 100;
 
     const viewportHeight = window.innerHeight;
-	const viewportWidth = window.innerWidth- 180;
+	if("true"==checkMediaQuery()){
+		viewportWidth = window.innerWidth;
+		
+	}
+	else{
+		viewportWidth = window.innerWidth- 180;
+	}
 	
 
 	const dummyDiv = $('<div>').css({
@@ -93,7 +100,20 @@ jQuery(document).ready(function($) {
         });
 		return false;
     });
+	// ウィンドウの幅と向きをチェックする関数
+	function checkMediaQuery() {
+		const windowWidth = $(window).width(); // JQueryでウィンドウの幅を取得
+		const isPortrait = window.orientation === 0 || window.orientation === 180; // ポートレートモードかを判定
+		ret="true";
 
+		// 条件をチェック
+		if (windowWidth <= 1024 && isPortrait) {
+			ret="true";
+		} else {
+			ret="false";
+		}
+		return ret;
+	}
 });
 
 function viewThumbnail(){
