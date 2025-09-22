@@ -1,5 +1,5 @@
 :root {
-	--keyImageWidth:calc((100vw - 180px) / 6);
+	--keyImageWidth:calc((100vw - 180px ) / 5 - 10px);
 }
 
 html{
@@ -154,7 +154,8 @@ html{
     margin-bottom: 10px;
     writing-mode: vertical-rl;
     display: inline-block;
-    vertical-align: top;		
+    vertical-align: top;
+    margin-right: 20px;		
 } 
 .parts > .genre{
     display: inline-block;
@@ -169,7 +170,6 @@ html{
 } 
 .parts > .aLink > .genre{
     display: inline-block;
-    margin-right: 20px;	
 } 
 .parts > .aLink > .exhibitorName{
     display: inline-block;
@@ -180,8 +180,6 @@ html{
 } 
 .parts > .subExhibitor{
 /*	border-left: solid 1px;	*/
-    padding-left: 10px;
-    margin-left: 17px;
     padding-top: 35px;
 
 }

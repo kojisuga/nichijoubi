@@ -454,8 +454,8 @@ $arblockSerialNumber[]=$blockSerialNumber;
 
 			$arImageList = array();
 			// 繰り返しフィールドの値を取得
-			if ( have_rows('imageList', $post_id) ) {
-				while ( have_rows('imageList', $post_id) ) {
+			if ( have_rows('slideimagelist', $post_id) ) {
+				while ( have_rows('slideimagelist', $post_id) ) {
 					the_row();
 					// サブフィールドの画像フィールドの値を取得
 					$image = get_sub_field('image');

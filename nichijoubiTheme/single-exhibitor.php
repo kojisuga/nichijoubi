@@ -23,6 +23,7 @@ if ( have_posts() ) {
 		$commitmentJP = get_field('commitmentJP');
 		$messageJP  = get_field('messageJP');
 		$profileJP = get_field('profileJP');
+		$mainImageCut = get_field('mainImageCut');
 
 		if( have_rows('imageList') ):
 			
@@ -71,7 +72,11 @@ jQuery(document).ready(function($) {
 
 <div class="pageWrapper">
 	<div class="topImage">
+<?php if($mainImageCut){ ?>
+		<img class="fadeIn" src="<?php echo $mainImageCut; ?>">
+<?php }else{ ?>
 		<img class="fadeIn" src="<?php echo $arImageList[0]; ?>">
+<?php } ?>
 	</div>
 
 

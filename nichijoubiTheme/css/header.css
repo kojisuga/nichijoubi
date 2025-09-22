@@ -43,14 +43,14 @@
 }
 .lang > .btnWrapper{
 	display: inline-block;
-	font-size: 70%;
+	font-size: 80%;
 }
 .lang > .btnWrapper .btn{
 	display: inline-block;
 }
 .snsArea{
 	position: absolute;
-    bottom: 80px;
+    bottom: 30px;
     width: 100%;
 }
 .snsArea .icon{

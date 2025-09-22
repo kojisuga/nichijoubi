@@ -17,8 +17,8 @@ session_start();
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="keywords" content="島作,台湾,shimasaku,taiwan,japanese,handcraft,日常美,nichijoubi,日常,nichijou">
 <meta name="description" content="">
-<link rel="shortcut icon" href="">
-<link rel="apple-touch-icon" href="">
+<link rel="shortcut icon" href="<?php echo get_template_directory_uri(); ?>/image/common/favicon/favicon.ico">
+<link rel="apple-touch-icon" href="<?php echo get_template_directory_uri(); ?>/image/common/favicon/favicon.ico">
 
 <!--〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓-->
 <!--Css------------------------------------------------------------------------------------------------------------------>
@@ -36,7 +36,6 @@ session_start();
 <?php
 
 // URLパラメータの 'id' の値を取得
-echo "sessionDataBefore: ".$_SESSION['lang'];
 
 if($_GET['lang']){
 	$lang = $_GET['lang'];
@@ -50,12 +49,16 @@ else{
 
 }
 
-// セッション変数に値を保存
-echo "sessionDataAftter: ".$_SESSION['lang'];
-
-
-
 ?>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MTW5MP1SHK"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-MTW5MP1SHK');
+</script>
 </head>
 
 

@@ -13,7 +13,7 @@ jQuery(document).ready(function($) {
     // 画面サイズを取得
 
     const viewportHeight = window.innerHeight;
-    const viewportWidth = window.innerWidth;
+	const viewportWidth = window.innerWidth- 180;
 	
 
 	const dummyDiv = $('<div>').css({
@@ -317,9 +317,9 @@ $('.block').each(function() {
 				</div>
 
 				<div class=" langJP concept">
-					日常美は、日本の丁寧な手仕事、伝統を受け継ぐ作り手の集まりです。
-					私たちは2025年11月に「島作」に出展いたします。
-					台湾の皆さまとお会いできるのをとても楽しみにしています。
+					日常美は、日本の丁寧な手仕事、伝統を受け継ぐ作り手の集まりです。<br>
+					私たちは2025年11月に「島作」に出展いたします。<br>
+					台湾の皆さまとお会いできるのをとても楽しみにしています。<br>
 				</div>
 			</div>
 		</div><!-- contents about -->

@@ -107,7 +107,7 @@
     width: calc(100% - 770px);
     display: inline-block;
 	padding:40px;
-    vertical-align: top;
+	vertical-align: top;
 }
 .pageWrapper > .contentsWrapper > .contents > .substance > .image{
 	width: 750px;
@@ -115,8 +115,10 @@
 
 }
 .pageWrapper > .contentsWrapper > .contents > .substance > .image img{
-
+	margin-bottom:30px;
 }
+
+
 #profile{
 	margin-bottom:100px;
 	    text-align: center;

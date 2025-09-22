@@ -43,7 +43,7 @@
 			<a class="aLink" href="<?php echo get_home_url() ?>/?page=contact"><div class="list">contact</div></a>
 		</div><!-- menuListWrapper -->
 		<div class="lang">
-			<div class="label">Lang</div>
+			<div class="label">language</div>
 			
 			<div class="btnWrapper">
 <?php 
