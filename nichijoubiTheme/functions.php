@@ -417,7 +417,7 @@ function genTopThumnail() {
 	}
 
 	// for test
-$arblockSerialNumber = array();
+	$userImageList = array();
 	// line数を決定
 	$lineNumber = intval($width / $keyImageWidth);
 	// block数を決定
@@ -435,7 +435,7 @@ $debutText.="LineNumber:".$lineNumber." blockNumber: ".$blockNumber."</br>";
 		for($j = 0; $j < $blockNumber; $j++){
 
 			$blockSerialNumber = getRandomNumber4Block($blockNumber*$lineNumber);
-$arblockSerialNumber[]=$blockSerialNumber;
+
 			$randumIndex = getRandomNumber4Post(count($arPostID) -1);
 			
 			$arRandomIndex[] = $randumIndex;
@@ -463,6 +463,33 @@ $arblockSerialNumber[]=$blockSerialNumber;
 				}
 			}
 			getRandomNumber4Img(count($arImageList) - 1,true);
+			
+			$k = 4;
+			do{
+
+				if(empty($userImageList[$brand_name])){
+					$randaomIndex = getRandomNumber4Img(count($arImageList) - 1,false);
+					$userImageList[$brand_name][] = $arImageList[$randaomIndex];
+					$outputCode .= '<div class="image">';
+					$outputCode .= '<img class="thumbnailImg" src="'.$arImageList[$randaomIndex].'" data-postID="'.$post_id.'" data-slideNumber="'.($k+1).'" data-ImageCount="'.count($arImageList).'">';
+					$outputCode .= '</div>';
+				}
+
+				else{
+					if($userImageList[$exhibitor_name][0] != arImageList[$randaomIndex]){ // 重複してない
+						if($k == 4)){
+							$userImageList[$exhibitor_name][] = $arImageList[$randaomIndex];
+						}
+						$randaomIndex = getRandomNumber4Img(count($arImageList) - 1,false);
+						$outputCode .= '<div class="image">';
+						$outputCode .= '<img class="thumbnailImg" src="'.$arImageList[$randaomIndex].'" data-postID="'.$post_id.'" data-slideNumber="'.($k+1).'" data-ImageCount="'.count($arImageList).'">';
+						$outputCode .= '</div>';
+					}
+				}
+
+				$k--;
+			}while( ( $k >= 0) );
+
 
 			for ($k = 4; $k >= 0; $k--) {
 				$randaomIndex = getRandomNumber4Img(count($arImageList) - 1,false);
@@ -482,6 +509,7 @@ $arblockSerialNumber[]=$blockSerialNumber;
 
 		$outputCode .= '</div>';
 	}
+		var_dump($userImageList);
 
 	$outputCode .= '</div>';
 
